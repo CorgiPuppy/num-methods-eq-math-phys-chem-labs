@@ -1,3 +1,6 @@
+#import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
+#import fletcher.shapes: diamond
+
 #show raw.where(block: true): it => { set par(justify: false); grid(
   columns: (100%, 100%),
   column-gutter: -100%,
@@ -89,3 +92,14 @@
 
 #pagebreak()
 
+#set text(font: "Comic Neue", weight: 600) // testing: omit
+
+#diagram(
+	node-stroke: 1pt,
+	node((0,0), [Start], corner-radius: 2pt, extrude: (0, 3)),
+	edge("-|>"),
+	node((0,1), align(center)[
+		Hey, wait,\ this flowchart\ is a trap!
+	], shape: diamond),
+	edge("d,r,u,l", "-|>", [Yes], label-pos: 0.1)
+)
