@@ -3,8 +3,8 @@
 
 <style>
 th, td{
-	text-align: center;
-	vertical-align: middle;
+	text-align:center;
+	vertical-align:middle;
 }
 </style>
 <table style="width:100%">
