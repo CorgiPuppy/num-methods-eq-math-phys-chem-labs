@@ -15,7 +15,7 @@ run-src: $(SRC)
 	@echo "Running main.."
 
 run-report: $(RPRT)
-	@echo "Running report.."
+	@echo "Running a report.."
 	@$(ZTHR) $<	
 
 $(RPRT): $(REPORT_DIR)/*.typ
@@ -23,5 +23,5 @@ $(RPRT): $(REPORT_DIR)/*.typ
 	@$(TPST) $<
 
 clean-report: 
-	@echo "Cleaning up.."
+	@echo "Cleaning the report.."
 	@$(RM) $(RPRT)
