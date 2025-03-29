@@ -1,12 +1,6 @@
 # Лабораторная работа 1
 ## Вариант 22
 
-Для заданного уравнения:
-
-| Вариант | Уравнение | Интервалы переменных | Начальные и граничные условия |
-| ------- | --------- | -------------------- | ----------------------------- |
-| 22 | $$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$ | x [0, 1]; t [0, 1] | $$ u(t = 0, x) = $$; u(t, x = 0) = 0; u(t, x = 1) =  |
-
 <table style="width:100%">
     <tr>
         <th>Вариант</th>
@@ -16,8 +10,11 @@
     </tr>
     <tr>
         <td>22</td>
-        <td>$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$</td>
-		<td></td>
-		<td></td>
+        <td>$$ \frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2} $$</td>
+		<td>$$ x \in [0, 1] $$ <br> $$ t \in [0, 1] $$</td>
+		<td>$$ u(t = 0, x) = e^x $$ <br> $$ u(t, x = 0) = e^t $$ <br> $$ u(t, x = 1) = e^{t+1} $$</td>
     </tr>
 </table>
+
+Для заданного уравнения:
+
