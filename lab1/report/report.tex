@@ -1,0 +1,125 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+\usepackage{makecell}
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\normalsize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\usepackage{graphicx}
+\graphicspath{ plots/pictures }
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large \textbf{Министерство науки и высшего образования Российской Федерации} \\
+			\large \textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования} \\
+			\large \textbf{«Российский химико-технологический университет имени Д.И. Менделеева»} \\
+
+			\vspace*{4cm}
+			\LARGE \textbf{ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №1}
+
+			\vspace*{1cm}
+			\LARGE \textbf{Вариант 22}
+
+			\vspace*{4cm}
+			\begin{flushright}
+				\Large
+				\begin{tabular}{>{\raggedleft\arraybackslash}p{9cm} p{10cm}}
+					Выполнил студент группы КС-36: & Золотухин А.А. \\
+					Ссылка на репозиторий: & https://github.com/ \\
+					& CorgiPuppy/ \\
+					& num-methods-eq-math-phys-chem-labs \\
+					Принял: & Лебедев Данила Александрович \\
+					Дата сдачи: & 02.04.2025 \\
+				\end{tabular}
+			\end{flushright}
+
+			\vspace*{4cm}
+			\Large \textbf{Москва \\ 2025}
+		\end{center}
+	\end{titlepage}
+
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section*{Описание задачи}
+	\addcontentsline{toc}{section}{Описание задачи}
+	\large
+	\begin{center}
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Вариант & Уравнение & Интервалы переменных & Начальные и граничные условия \\
+			\hline
+			22 & $ \frac{\partial u}{\partial t}=\frac{\partial^2 u}{\partial t^2}$ & \makecell{$ x \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x) = e^x $ \\ $ u(t, x = 0) = e^t $ \\ $ u(t, x = 1) = e^{t+1} $} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\item записать явную разностную схему;
+		\item определить порядок аппроксимации разностной схемы;
+		\item получить условие устойчивости разностной схемы на шаг (с помощью метода гармоник);
+		\item вывести рекуррентное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item построить программу на любом удобном языке программирования;
+		\item провести численный расчёт с использованием различных значений $ \Delta t (0.1, 0.01, 0.001)$, $ h = 0.1 $;
+		\item составить отчёт о проделанной работе.
+	\end{enumerate}
+	\newpage
+
+	\section*{Выполнение задачи}
+	\addcontentsline{toc}{section}{Выполнение задачи}
+	
+\end{document}
