@@ -6,6 +6,7 @@ SRC := $(wildcard $(SRC_DIR)/*.sh)
 
 BSH := bash
 PDFLTX := pdflatex
+ZTHR := zathura
 
 OUTPUT := --output-directory
 
@@ -19,7 +20,7 @@ run-src: $(SRC)
 
 run-report: $(RPRT)
 	@echo "Running report.."
-	@zathura $<	
+	@$(ZTHR) $<	
 
 $(RPRT): $(REPORT_DIR)/*.tex
 	@echo "Building pdf.."
