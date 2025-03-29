@@ -2,4 +2,22 @@
 ## Вариант 22
 
 Для заданного уравнения:
-$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$
+
+| Вариант | Уравнение | Интервалы переменных | Начальные и граничные условия |
+| ------- | --------- | -------------------- | ----------------------------- |
+| 22 | $$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$ | x [0, 1]; t [0, 1] | $$ u(t = 0, x) = $$; u(t, x = 0) = 0; u(t, x = 1) =  |
+
+<table style="width:100%">
+    <tr>
+        <th>Вариант</th>
+        <th>Уравнение</th>
+        <th>Интервалы переменных</th>
+        <th>Начальные и граничные условия</th>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td>$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$</td>
+		<td></td>
+		<td></td>
+    </tr>
+</table>
