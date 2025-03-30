@@ -238,12 +238,20 @@
 		\label{fig:rgreater1}
 	\end{figure}
 
+	\newpage
+
 	\subsection*{Задание 3}
 	\addcontentsline{toc}{subsection}{Задание 3}
 	\large
-	Вывести рекуррентное соотношение:
+	Вывести рекуррентное соотношение: \par
 	Выражаю $u_{j}^{n+1}$ из разностной схемы \eqref{eq:explicit}:
 	\begin{equation*}
-		u_{j}^{n+1} = u_{j}^{n}
+		u_{j}^{n+1} = u_{j}^{n} + 8\frac{\Delta t}{h}(u_{j+1}^{n}-u_{j}^{n}) + \Delta t(((j - 1)h)^{2} - 1). 
 	\end{equation*}
+
+	\subsection*{Задание 4}
+	\addcontentsline{toc}{subsection}{Задание 4}
+	\large
+	Составить алгоритм (блок-схему) расчёта:
+	
 \end{document}
