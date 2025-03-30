@@ -28,31 +28,8 @@
 
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
-
-\usepackage{listings}
-\usepackage{xcolor}
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\normalsize\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
-}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.text}
 
 \begin{document}
 	\begin{titlepage}
@@ -141,5 +118,124 @@
 		\frac{\lambda^{n+1}e^{i \alpha j}-\lambda^{n}e^{i \alpha j}}{\Delta t} - 8\frac{\lambda^{n}e^{i \alpha (j + 1)}-\lambda^{n}e^{i \alpha j}}{h} = 0.
 	\end{equation*}
 	\par
-	Упрощаю данное выражение, деля левую и правую его части на 
+	Упрощаю данное выражение, деля левую и правую его части на $\lambda^{n}e^{i \alpha j}$, и выражаю $\lambda$:
+	\begin{equation*}
+		\frac{\lambda - 1}{\Delta t} - 8\frac{e^{i \alpha} - 1}{h} = 0 \Rightarrow \lambda = 1 - 8\frac{\Delta t}{h} + 8\frac{\Delta t}{h}e^{i \alpha}.
+	\end{equation*}
+	\par
+	Комплексный вид полученного выражения свидетельствует о том, что необходимое условие устойчивости разностных схем также следует рассматривать в применении к комплексным числам. То есть, неравенство
+	\begin{equation}\label{eq:stability}
+		\lvert \lambda \rvert \leq 1 
+	\end{equation}
+	означает, что для того, чтобы разностная схема была устойчива, необходимо чтобы собственные числа оператора перехода были расположены внутри или на границе круга радиусом 1, центр которого находится в начале координат комплексной плоскости (рис. \ref{fig:stability}).
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.6]
+			\draw (-3, 0) -- (3, 0) node[right] {Re};
+			\draw (0, -3) -- (0, 3) node[above] {Im};
+			\foreach \x/\xtext in {-2, -1, 1, 2}
+			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=none] {$\xtext$};
+			\foreach \y/\ytext in {-2/-2i, -1/-i, 1/i, 2/2i}
+			\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=none] {$\ytext$};
+			
+			\draw (0,0) circle [radius=1cm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={1}}}, thick, -Stealth] (0,0) -- (0.7,0.7);
+		\end{tikzpicture}
+		\caption{Графическая интерпретация условия устойчивости \eqref{eq:stability}}
+		\label{fig:stability}
+	\end{figure}
+	\par
+	Введу следующие обозначение:
+	\begin{equation*}
+		r = 8\frac{\Delta t}{h} > 0 \Rightarrow \lambda = 1 - r + r e^{i \alpha}.
+	\end{equation*}
+	\par
+	Полученное выражение свидетельствует о том, что собственные числа оператора расположены на комплексной плоскости на окружности с центром в точке $(1 - r,0)$ и радиусом:
+	\begin{equation*}
+		\lvert re^{i \alpha} \rvert = \lvert r\cos{\alpha}+ir\sin{\alpha} \rvert = \sqrt{r^{2}\cos^{2}{\alpha}+r^{2}\sin^{2}{\alpha}} = r.
+	\end{equation*}
+	\par
+	Сравнивая расположение этой окружности на комплексной плоскости с условием \eqref{eq:stability}, получаю три различных варианта (рис. \ref{fig:rless1}-\ref{fig:rgreater1}). Видно, что окружность, соответствующая собственным числам оператора перехода, при $r < 1$ находится внутри круга, соответствующего условию \eqref{eq:stability}; при $r > 1$ - вне этого круга, а при $r = 1$ совпадает с его границей. Таким образом, разностная схема \eqref{eq:explicit} будет устойчива при выполнении следующего условия:
+	\begin{equation*}
+		r = 8\frac{\Delta t}{h} \leq 1
+	\end{equation*}
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.6]
+			\draw (-3, 0) -- (3, 0) node[right] {Re};
+			\draw (0, -3) -- (0, 3) node[above] {Im};
+			\foreach \x/\xtext in {-2, -1, 1, 2}
+			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=none] {$\xtext$};
+			\foreach \y/\ytext in {-2/-2i, -1/-i, 1/i, 2/2i}
+			\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=none] {$\ytext$};
+			
+			\draw (0,0) circle [radius=1cm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={1}}}, thick, -Stealth] (0,0) -- (0.7,0.7);
+			\draw [blue, very thick] (1-0.4,0) circle [radius=0.4cm];
+			\filldraw [black] (1-0.4,0) circle [radius=0.5mm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center, reverse path,
+				text={r}}}, thick, -Stealth] (1-0.4,0) -- (1-0.5,0.4);
+		\end{tikzpicture}
+		\caption{Исследование устойчивости разностной схемы \eqref{eq:explicit} при $r < 1$}
+		\label{fig:rless1}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.6]
+			\draw (-3, 0) -- (3, 0) node[right] {Re};
+			\draw (0, -3) -- (0, 3) node[above] {Im};
+			\foreach \x/\xtext in {-2, -1, 1, 2}
+			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=none] {$\xtext$};
+			\foreach \y/\ytext in {-2/-2i, -1/-i, 1/i, 2/2i}
+			\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=none] {$\ytext$};
+			
+			\draw (0,0) circle [radius=1cm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={1}}}, thick, -Stealth] (0,0) -- (0.7,0.7);
+			\draw [blue, very thick] (0,0) circle [radius=1cm];
+			\filldraw [black] (0,0) circle [radius=0.5mm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center, reverse path,
+				text={r}}}, thick, -Stealth] (0,0) -- (-0.7,0.7);
+		\end{tikzpicture}
+		\caption{Исследование устойчивости разностной схемы \eqref{eq:explicit} при $r = 1$}
+		\label{fig:requal1}
+	\end{figure}
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.6]
+			\draw (-3, 0) -- (3, 0) node[right] {Re};
+			\draw (0, -3) -- (0, 3) node[above] {Im};
+			\foreach \x/\xtext in {-2, -1, 1, 2}
+			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=none] {$\xtext$};
+			\foreach \y/\ytext in {-2/-2i, -1/-i, 1/i, 2/2i}
+			\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=none] {$\ytext$};
+			
+			\draw (0,0) circle [radius=1cm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={1}}}, thick, -Stealth] (0,0) -- (0.7,0.7);
+			\draw [blue, very thick] (1-1.4,0) circle [radius=1.4cm];
+			\filldraw [black] (1-1.4,0) circle [radius=0.5mm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center, reverse path,
+				text={r}}}, thick, -Stealth] (1-1.4,0) -- (1-1.7,1.4);
+		\end{tikzpicture}
+		\caption{Исследование устойчивости разностной схемы \eqref{eq:explicit} при $r > 1$}
+		\label{fig:rgreater1}
+	\end{figure}
+
 \end{document}
