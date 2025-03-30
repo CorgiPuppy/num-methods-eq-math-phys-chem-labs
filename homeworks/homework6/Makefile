@@ -1,4 +1,4 @@
-REPORT_DIr := report 
+REPORT_DIR := report
 
 RPRT := $(REPORT_DIR)/report.pdf
 
