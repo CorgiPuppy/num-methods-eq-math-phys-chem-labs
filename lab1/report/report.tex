@@ -135,6 +135,42 @@
 	\subsection*{Задание 2}
 	\addcontentsline{toc}{subsection}{Задание 2}
 	\large
-	Определить порядок аппроксимации разностной схемы \eqref{eq:explicit}:
-	Выясним, с какой точностью конечная разность 
+	Определить порядок аппроксимации разностной схемы \eqref{eq:explicit}: \par
+	Для этого запишу разложение значений $u_{j}^{n+1}$, $u_{j+1}^{n}$, $u_{j-1}^{n}$ в ряд Тейлора относительно точки ($t^{n}$, $x_{j}$) на разностной сетке:
+	\begin{equation}\label{eq:value1}
+		u_{j}^{n+1} = u_{j}^{n} + \left.\frac{\partial u}{\partial t}\right|_{j}^{n}\Delta t + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}(\Delta t)^{2} + \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial t^{3}}\right|_{j}^{n}(\Delta t)^{3} + \dots,
+	\end{equation}
+	\begin{equation}\label{eq:value2}
+		u_{j+1}^{n} = u_{j}^{n} + \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} + \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{3} + \left.\frac{1}{4!}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{4} + \dots,
+	\end{equation}
+	\begin{equation}\label{eq:value3}
+		u_{j-1}^{n} = u_{j}^{n} - \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} - \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{3} + \left.\frac{1}{4!}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{4} - \dots
+	\end{equation}
+	\par
+	Подставляя зависимости \eqref{eq:value1}-\eqref{eq:value3} в разностную схему \eqref{eq:explicit}, получаем:
+	\begin{equation*}
+		\left.\frac{\partial u}{\partial t}\right|_{j}^{n} + \left.\frac{1}{2}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}\Delta t + \left.\frac{1}{6}\frac{\partial^{3} u}{\partial t^{3}}\right|_{j}^{n}(\Delta t)^{2} = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + \left.\frac{1}{12}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{2}
+	\end{equation*}
+	\begin{equation*}
+		\Rightarrow \left.\frac{\partial u}{\partial t}\right|_{j}^{n} + O(\Delta t) = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + O(h^{2})
+	\end{equation*}
+	\par
+	Таким образом, явная разностная схема \eqref{eq:explicit} аппроксимирует исходное дифференциальное уравнение с первым порядком по времени и со вторым порядком по координате, что записывается в следующем виде:
+	\begin{equation*}
+		O(\Delta t) + O(h^{2}) \text{ или } O(\Delta t, h^{2})	
+	\end{equation*}
+
+	\subsection*{Задание 3}
+	\addcontentsline{toc}{subsection}{Задание 3}
+	\large
+	Получить условие устойчивости разностной схемы на шаг (с помощью метода гармоник): \par
+	Представлю решение разностной схемы в виде гармоники:
+	\begin{equation}\label{eq:harmonic}
+		u_{j}^{n} = \lambda^{n}e^{i \alpha j}
+	\end{equation}
+	Подставляя \eqref{eq:harmonic} в разностную схему \eqref{eq:explicit}, получаю:
+	\begin{equation*}
+		\frac{\lambda^{n+1}e^{i \alpha j} - \lambda^{n}e^{i \alpha j}}{\Delta t} = \frac{\lambda^{n}e^{i \alpha (j+1)} - 2\lambda^{n}e^{i \alpha j} + \lambda^{n}e^{i \alpha (j-1)}}{h^{2}}
+	\end{equation*}
+
 \end{document}
