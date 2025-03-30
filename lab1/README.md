@@ -10,7 +10,7 @@
     </tr>
     <tr>
         <td style="text-align:center; vertical-align:middle">22</td>
-        <td style="text-align:center; vertical-align:middle">$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial t^2}$$</td>
+        <td style="text-align:center; vertical-align:middle">$$\frac{\partial u}{\partial t} = \frac{\partial^2 u}{\partial x^2}$$</td>
 		<td style="text-align:center; vertical-align:middle">$$x \in [0, 1]$$ <br> $$t \in [0, 1]$$</td>
 		<td style="text-align:center; vertical-align:middle">$$u(t = 0, x) = e^x$$ <br> $$u(t, x = 0) = e^t$$ <br> $$u(t, x = 1) = e^{t+1}$$</td>
     </tr>
