@@ -12,7 +12,7 @@ OUTPUT := --output-directory
 
 .PHONY: all
 
-all: clean-report run-src run-report clean-aux
+all: clean-report run-report clean-aux
 
 run-src: $(SRC)
 	@echo "Running main.."
