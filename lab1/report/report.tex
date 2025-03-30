@@ -131,6 +131,8 @@
 	\begin{equation}\label{eq:explicit}
 		\frac{u_{j}^{n+1}-u_{j}^{n}}{\Delta t}=\frac{u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}}{h^{2}}.
 	\end{equation}	
+	\par
+	В записанной разностной схеме \eqref{eq:explicit} аппроксимация второй производной функции \textit{u(t, x)} по координате рассматривается на \textit{n}-м шаге по времени, т.е. относительно точки $t^{n}$, для которой рассматривается аппроксимация всего уравнения. Такая разностная схема называется \textbf{явной}.
 
 	\subsection*{Задание 2}
 	\addcontentsline{toc}{subsection}{Задание 2}
@@ -213,4 +215,15 @@
 	\begin{equation*}
 		\Delta t \leq \frac{(10^{-1})^{2}}{2} \Rightarrow \Delta t \leq 5 \cdot 10^{-3}.
 	\end{equation*}
+
+	\subsection*{Задание 4}
+	\addcontentsline{toc}{subsection}{Задание 4}
+	\large
+	Вывести рекуррентное соотношение: \par
+	Выражаю из разностной схемы \eqref{eq:explicit} величину $u_{j}^{n+1}$:
+	\begin{equation}\label{eq:recurrence}
+		u_{j}^{n+1} = u_{j}^{n} + \frac{\Delta t}{h^{2}}(u_{j+1}^{n} - 2u_{j}^{n} + u_{j-1}^{n}).
+	\end{equation}
+	\par
+	Соотношение типа \eqref{eq:recurrence}, позволяющее рассчитывать значения искомой функции в узлах разностной сетки через известные значения в других узлах разностной сетки, называют \textbf{рекуррентным соотношением}.
 \end{document}
