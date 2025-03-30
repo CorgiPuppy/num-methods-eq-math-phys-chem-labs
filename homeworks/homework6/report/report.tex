@@ -293,13 +293,55 @@
 	Проверить условие устойчивости разностной схемы: \par
 	Исследую устойчивость разностной схемы \eqref{eq:implicit} с помощью спектрального метода. Для этого отброшу член $((j - 1)h)^{2} - 1$, наличие которого не оказывает влияния на устойчивость разностной схемы, и представлю решение в виде гармоники. Подставляя \eqref{eq:harmonic} в \eqref{eq:implicit}:
 	\begin{equation*}
-		\frac{\lambda^{n+1}e^{i \alpha j}-\lambda^{n+1}e^{i \alpha j}}{\Delta t} - 8\frac{\lambda^{n}e^{i \alpha (j + 1)}-\lambda^{n}e^{i \alpha j}}{h} = 0.
+		\frac{\lambda^{n+1}e^{i \alpha j}-\lambda^{n}e^{i \alpha j}}{\Delta t} - 8\frac{\lambda^{n+1}e^{i \alpha (j + 1)}-\lambda^{n+1}e^{i \alpha j}}{h} = 0.
 	\end{equation*}
 	\par
-	Упрощаю данное выражение, деля левую и правую его части на $\lambda^{n}e^{i \alpha j}$, и выражаю $\lambda$:
+	Упрощаю данное выражение, деля левую и правую его части на $\lambda^{n}e^{i \alpha j}$, и выражаю величину, обратную $\lambda$:
 	\begin{equation*}
-		\frac{\lambda - 1}{\Delta t} - 8\frac{e^{i \alpha} - 1}{h} = 0 \Rightarrow \lambda = 1 - 8\frac{\Delta t}{h} + 8\frac{\Delta t}{h}e^{i \alpha}.
+		\frac{\lambda - 1}{\Delta t} - 8\frac{\lambda e^{i \alpha} - \lambda}{h} = 0 \Rightarrow \frac{1}{\lambda} = 1 + 8\frac{\Delta t}{h} - 8\frac{\Delta t}{h}e^{i \alpha}.
 	\end{equation*}
 	\par
+	При этом необходимое условие устойчивости разностных схем \eqref{eq:stability} также преобразую к виду:
+	\begin{equation}\label{eq:reversestability}
+		\lvert \frac{1}{\lambda} \rvert \geq 1.
+	\end{equation}
+	\par
+	Неравенство \eqref{eq:reversestability} в применении к комплексным числам означает, что для устойчивости разностной схемы \eqref{eq:implicit} требуется, чтобы величины, обратные собственным числам оператора перехода, были расположены вне или на границе круга радиусом \textit{1}, центр котого находится в начале координат комплексной плоскости (рис. \ref{fig:stability}). \par
+	Введу следующее обозначение:
+	\begin{equation*}
+		r = 8\frac{\Delta t}{h} > 0 \Rightarrow \frac{1}{\lambda} = 1 + r - re^{i \alpha}.
+	\end{equation*}
+	\par
+	Полученное выражение свидетельствует о том, что собственные числа оператора расположены на комплексной плоскости на окружности с центром в точке $(1 + r,0)$ и радиусом:
+	\begin{equation*}
+		\lvert -re^{i \alpha} \rvert = \lvert -r\cos{\alpha}+i(-r)\sin{\alpha} \rvert = \sqrt{(-r)^{2}\cos^{2}{\alpha}+(-r)^{2}\sin^{2}{\alpha}} = r.
+	\end{equation*}
+	\par
+	Данная окружность находится вне круга, соответствующего условию \eqref{eq:reversestability} при любом значении $r$ (рис. \ref{fig:implicit}. Таким образом, разностная схема \eqref{eq:implicit} будет \textbf{абсолютно устойчива}.
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[scale=1.6]
+			\draw (-3, 0) -- (3, 0) node[right] {Re};
+			\draw (0, -3) -- (0, 3) node[above] {Im};
+			\foreach \x/\xtext in {-2, -1, 1, 2}
+			\draw (\x cm,1pt) -- (\x cm,-1pt) node[anchor=north,fill=none] {$\xtext$};
+			\foreach \y/\ytext in {-2/-2i, -1/-i, 1/i, 2/2i}
+			\draw (1pt,\y cm) -- (-1pt,\y cm) node[anchor=east,fill=none] {$\ytext$};
+			
+			\draw (0,0) circle [radius=1cm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={1}}}, thick, -Stealth] (0,0) -- (0.7,0.7);
+			\draw [blue, very thick] (1+0.4,0) circle [radius=0.4cm];
+			\filldraw [black] (1+0.4,0) circle [radius=0.5mm];
+			\draw[postaction={decorate,
+				decoration={raise=4pt, text along path,
+				text align=center,
+				text={r}}}, thick, -Stealth] (1+0.4,0) -- (1+0.5,0.4);
+		\end{tikzpicture}
+		\caption{Исследование устойчивости разностной схемы \eqref{eq:implicit}}
+		\label{fig:implicit}
+	\end{figure}
 
 \end{document}
