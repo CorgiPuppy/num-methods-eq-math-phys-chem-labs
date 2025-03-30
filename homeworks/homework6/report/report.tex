@@ -107,7 +107,7 @@
 	\subsection*{Задание 2}
 	\addcontentsline{toc}{subsection}{Задание 2}
 	\large
-	Проверить условие устойчивости разностной схемы:
+	Проверить условие устойчивости разностной схемы: \par
 	Исследую устойчивость разностной схемы \eqref{eq:explicit} с помощью спектрального метода. Для этого отброшу член $((j - 1)h)^{2} - 1$, наличие которого не оказывает влияния на устойчивость разностной схемы, и представлю решение в виде гармоники:
 	\begin{equation}\label{eq:harmonic}
 		u_{j}^{n} = \lambda^{n}e^{i \alpha j}.
@@ -278,4 +278,28 @@
 			\draw [arrow] (pr3.west) -- ++(left:5cm) -| +(up:8cm) -- (dec.west);
 		\end{tikzpicture}
 	\end{center}	
+
+	\subsection*{Задание 5}
+	\addcontentsline{toc}{subsection}{Задание 5}
+	\large
+	Записать неявную разностную схему:
+	\begin{equation}\label{eq:implicit}
+		\frac{u_{j}^{n+1}-u_{j}^{n}}{\Delta t} - 8\frac{u_{j+1}^{n+1}-u_{j}^{n+1}}{h} = ((j - 1)h)^{2} - 1.
+	\end{equation}
+
+	\subsection*{Задание 6}
+	\addcontentsline{toc}{subsection}{Задание 6}
+	\large
+	Проверить условие устойчивости разностной схемы: \par
+	Исследую устойчивость разностной схемы \eqref{eq:implicit} с помощью спектрального метода. Для этого отброшу член $((j - 1)h)^{2} - 1$, наличие которого не оказывает влияния на устойчивость разностной схемы, и представлю решение в виде гармоники. Подставляя \eqref{eq:harmonic} в \eqref{eq:implicit}:
+	\begin{equation*}
+		\frac{\lambda^{n+1}e^{i \alpha j}-\lambda^{n+1}e^{i \alpha j}}{\Delta t} - 8\frac{\lambda^{n}e^{i \alpha (j + 1)}-\lambda^{n}e^{i \alpha j}}{h} = 0.
+	\end{equation*}
+	\par
+	Упрощаю данное выражение, деля левую и правую его части на $\lambda^{n}e^{i \alpha j}$, и выражаю $\lambda$:
+	\begin{equation*}
+		\frac{\lambda - 1}{\Delta t} - 8\frac{e^{i \alpha} - 1}{h} = 0 \Rightarrow \lambda = 1 - 8\frac{\Delta t}{h} + 8\frac{\Delta t}{h}e^{i \alpha}.
+	\end{equation*}
+	\par
+
 \end{document}
