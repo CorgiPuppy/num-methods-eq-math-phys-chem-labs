@@ -129,7 +129,7 @@
 	\large
 	Записать явную разностную схему:
 	\begin{equation}\label{eq:explicit}
-		\frac{u_{j}^{n+1}-u_{j}^{n}}{\Delta t}=\frac{u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}}{h^{2}}
+		\frac{u_{j}^{n+1}-u_{j}^{n}}{\Delta t}=\frac{u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}}{h^{2}}.
 	\end{equation}	
 
 	\subsection*{Задание 2}
@@ -144,20 +144,20 @@
 		u_{j+1}^{n} = u_{j}^{n} + \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} + \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{3} + \left.\frac{1}{4!}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{4} + \dots,
 	\end{equation}
 	\begin{equation}\label{eq:value3}
-		u_{j-1}^{n} = u_{j}^{n} - \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} - \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{3} + \left.\frac{1}{4!}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{4} - \dots
+		u_{j-1}^{n} = u_{j}^{n} - \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} - \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{3} + \left.\frac{1}{4!}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{4} - \dots.
 	\end{equation}
 	\par
 	Подставляя зависимости \eqref{eq:value1}-\eqref{eq:value3} в разностную схему \eqref{eq:explicit}, получаем:
 	\begin{equation*}
-		\left.\frac{\partial u}{\partial t}\right|_{j}^{n} + \left.\frac{1}{2}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}\Delta t + \left.\frac{1}{6}\frac{\partial^{3} u}{\partial t^{3}}\right|_{j}^{n}(\Delta t)^{2} = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + \left.\frac{1}{12}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{2}
+		\left.\frac{\partial u}{\partial t}\right|_{j}^{n} + \left.\frac{1}{2}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}\Delta t + \left.\frac{1}{6}\frac{\partial^{3} u}{\partial t^{3}}\right|_{j}^{n}(\Delta t)^{2} = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + \left.\frac{1}{12}\frac{\partial^{4} u}{\partial x^{4}}\right|_{j}^{n}h^{2}.
 	\end{equation*}
 	\begin{equation*}
-		\Rightarrow \left.\frac{\partial u}{\partial t}\right|_{j}^{n} + O(\Delta t) = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + O(h^{2})
+		\Rightarrow \left.\frac{\partial u}{\partial t}\right|_{j}^{n} + O(\Delta t) = \left.\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n} + O(h^{2}).
 	\end{equation*}
 	\par
 	Таким образом, явная разностная схема \eqref{eq:explicit} аппроксимирует исходное дифференциальное уравнение с первым порядком по времени и со вторым порядком по координате, что записывается в следующем виде:
 	\begin{equation*}
-		O(\Delta t) + O(h^{2}) \text{ или } O(\Delta t, h^{2})	
+		O(\Delta t) + O(h^{2}) \text{ или } O(\Delta t, h^{2}).
 	\end{equation*}
 
 	\subsection*{Задание 3}
@@ -166,11 +166,51 @@
 	Получить условие устойчивости разностной схемы на шаг (с помощью метода гармоник): \par
 	Представлю решение разностной схемы в виде гармоники:
 	\begin{equation}\label{eq:harmonic}
-		u_{j}^{n} = \lambda^{n}e^{i \alpha j}
+		u_{j}^{n} = \lambda^{n}e^{i \alpha j}.
 	\end{equation}
+	\par
 	Подставляя \eqref{eq:harmonic} в разностную схему \eqref{eq:explicit}, получаю:
 	\begin{equation*}
-		\frac{\lambda^{n+1}e^{i \alpha j} - \lambda^{n}e^{i \alpha j}}{\Delta t} = \frac{\lambda^{n}e^{i \alpha (j+1)} - 2\lambda^{n}e^{i \alpha j} + \lambda^{n}e^{i \alpha (j-1)}}{h^{2}}
+		\frac{\lambda^{n+1}e^{i \alpha j} - \lambda^{n}e^{i \alpha j}}{\Delta t} = \frac{\lambda^{n}e^{i \alpha (j+1)} - 2\lambda^{n}e^{i \alpha j} + \lambda^{n}e^{i \alpha (j-1)}}{h^{2}}.
 	\end{equation*}
-
+	\par
+	Упрощаю полученное выражение, деля левую и правую его части на $\lambda^{n}e^{i \alpha j}$:
+	\begin{equation*}
+		\frac{\lambda - 1}{\Delta t} = \frac{e^{i \alpha} - 2 + e^{-i \alpha}}{h^{2}}.
+	\end{equation*}
+	\par
+	Преобразую комплексные числа из экспоненциальной формы в тригонометрическую:
+	\begin{equation*}
+		e^{\pm i \alpha} = \cos{\alpha} \pm i\sin{\alpha} \Rightarrow \frac{\lambda - 1}{\Delta t} = \frac{2\cos{\alpha} - 2}{h^{2}}.
+	\end{equation*}
+	\par
+	Используя тригонометрические тождества
+	\begin{equation*}
+		\cos{\alpha} = \cos^{2}{\frac{\alpha}{2}} - \sin^{2}{\frac{\alpha}{2}} = 1 - 2\sin^{2}{\frac{\alpha}{2}},
+	\end{equation*}
+	получаю формулу, из которой затем выражаю $\lambda$:
+	\begin{equation*}
+		\frac{\lambda - 1}{\Delta t} = \frac{-4\sin^{2}{\frac{\alpha}{2}}}{h^{2}} \Rightarrow \lambda = 1 - \frac{4 \Delta t}{h^{2}}\sin^{2}{\frac{\alpha}{2}}.
+	\end{equation*}
+	\par
+	С учётом необходимого условия устойчивости разностных схем $\lvert \lambda \rvert \leq 1$ имею:
+	\begin{equation*}
+		-1 \leq 1 - \frac{4 \Delta t}{h^{2}}\sin^{2}{\frac{\alpha}{2}} \leq 1.
+	\end{equation*}
+	\par
+	В полученном двойном неравенстве правое условие выполняется автоматически. Поэтому рассмотрю более подробно левое условие:
+	\begin{equation*}
+		1 - \frac{4 \Delta t}{h^{2}}\sin^{2}{\frac{\alpha}{2}} \geq -1 \Rightarrow \frac{\Delta t}{h^{2}}\sin^{2}{\frac{\alpha}{2}} \leq \frac{1}{2}.
+	\end{equation*}
+	\par
+	Задавая для $\sin^{2}{\frac{\alpha}{2}}$ максимально возможное значение, равное 1, перехожу к более строгому условию, справедливому для любого $\alpha$:
+	\begin{equation}\label{eq:stability}
+		\frac{\Delta t}{h^{2}}\sin^{2}{\frac{\alpha}{2}} \leq \frac{1}{2} \Rightarrow \frac{\Delta t}{h^{2}} \leq \frac{1}{2}.
+	\end{equation}
+	\par
+	Выражение \eqref{eq:stability} является условием устойчивости явной разностной схемы, аппроксимирующей одномерное дифференциальное уравнение параболического типа. Такие разностные схемы, устойчивость которых зависит от какого-либо условия, ограничивающего выбор интервала деления на разностной сетке, называют \textbf{условно устойчивыми}. \par
+	При $h = 10^{-1}$:
+	\begin{equation*}
+		\Delta t \leq \frac{(10^{-1})^{2}}{2} \Rightarrow \Delta t \leq 5 \cdot 10^{-3}.
+	\end{equation*}
 \end{document}
