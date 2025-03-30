@@ -24,6 +24,8 @@
 
 \usepackage{makecell}
 
+\usepackage{amsmath}
+
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
@@ -100,7 +102,7 @@
 			\hline
 			Вариант & Уравнение & Интервалы переменных & Начальные и граничные условия \\
 			\hline
-			22 & $ \frac{\partial u}{\partial t}=\frac{\partial^2 u}{\partial t^2}$ & \makecell{$ x \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x) = e^x $ \\ $ u(t, x = 0) = e^t $ \\ $ u(t, x = 1) = e^{t+1} $} \\
+			22 & $ \frac{\partial u}{\partial t}=\frac{\partial^2 u}{\partial x^2}$ & \makecell{$ x \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x) = e^x $ \\ $ u(t, x = 0) = e^t $ \\ $ u(t, x = 1) = e^{t+1} $} \\
 
 			\hline
 		\end{tabular}
@@ -121,5 +123,18 @@
 
 	\section*{Выполнение задачи}
 	\addcontentsline{toc}{section}{Выполнение задачи}
-	
+
+	\subsection*{Задание 1}
+	\addcontentsline{toc}{subsection}{Задание 1}
+	\large
+	Записать явную разностную схему:
+	\begin{equation}\label{eq:explicit}
+		\frac{u_{j}^{n+1}-u_{j}^{n}}{\Delta t}=\frac{u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}}{h^{2}}
+	\end{equation}	
+
+	\subsection*{Задание 2}
+	\addcontentsline{toc}{subsection}{Задание 2}
+	\large
+	Определить порядок аппроксимации разностной схемы \eqref{eq:explicit}:
+	Выясним, с какой точностью конечная разность 
 \end{document}
