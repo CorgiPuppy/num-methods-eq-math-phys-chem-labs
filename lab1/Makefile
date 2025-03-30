@@ -19,7 +19,7 @@ run-src: $(SRC)
 	@$(BSH) $<
 
 run-report: $(RPRT)
-	@echo "Running report.."
+	@echo "Running a report.."
 	@$(ZTHR) $<	
 
 $(RPRT): $(REPORT_DIR)/*.tex
@@ -32,5 +32,5 @@ clean-aux:
 	@find $(REPORT_DIR) -type f ! -name '*.pdf' ! -name '*.tex' -delete	
 
 clean-report: 
-	@echo "Cleaning up.."
+	@echo "Cleaning the report.."
 	@$(RM) $(RPRT)
