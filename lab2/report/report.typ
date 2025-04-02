@@ -269,7 +269,7 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 	]),
 	edge("-|>"),
 	node((0,4), align(center)[
-		цикл по $j = 2, ..., N_x - 1$\ расчёт $a_j$, $b_j$, $c_j$, $#ptgk("ks")_j^n$; $α_j = - frac(a_j, b_j + c_j α_(j-1))$, $#ptgk("b") = frac(#ptgk("ks")_j^n - c_j #ptgk("b")_(j-1), b_j + c_j α_(j-1))$ 
+		цикл по $j = 2, ..., N_x - 1$\ расчёт $a_j$, $b_j$, $c_j$, $#ptgk("ks")_j^n$; $α_j = - frac(a_j, b_j + c_j α_(j-1))$, $#ptgk("b")_j = frac(#ptgk("ks")_j^n - c_j #ptgk("b")_(j-1), b_j + c_j α_(j-1))$ 
 	]),
 	edge("-|>"),
 	node((0,5), align(center)[
