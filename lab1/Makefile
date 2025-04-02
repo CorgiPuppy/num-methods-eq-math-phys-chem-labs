@@ -11,12 +11,14 @@ OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(TARGET_DIR)/%.o, $(SRC))
 
 CPPC := g++
 CPPFLAGS := -lpthread -Wall
-TPST := typst compile --root .
+PDFLTX := pdflatex
 ZTHR := zathura
+
+OUTPUT := --output-directory
 
 .PHONY: all
 
-all: clean-report run-src run-report clean-target
+all: clean-report run-src run-report clean-target clean-aux
 
 run-src: $(EXE)
 	@echo "Running.."
@@ -36,11 +38,16 @@ $(TARGET_DIR):
 
 run-report: $(RPRT)
 	@echo "Running a report.."
-	@$(ZTHR) $<	
+	@$(ZTHR) $<
 
-$(RPRT): $(REPORT_DIR)/*.typ
+$(RPRT): $(REPORT_DIR)/*.tex
 	@echo "Building pdf.."
-	@$(TPST) $<
+	$(PDFLTX) $(OUTPUT)=$(REPORT_DIR) $<
+	$(PDFLTX) $(OUTPUT)=$(REPORT_DIR) $<
+
+clean-aux:
+	@echo "Cleaning up auxiliary files.."
+	@find $(REPORT_DIR) -type f ! -name '*.pdf' ! -name '*.tex' -delete
 
 clean-target:
 	@echo "Cleaning the target dir.."
