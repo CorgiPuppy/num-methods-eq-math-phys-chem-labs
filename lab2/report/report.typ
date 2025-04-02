@@ -254,11 +254,33 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 	node((0,0), [Start], corner-radius: 2pt, extrude: (0, 3)),
 	edge("-|>"),
 	node((0,1), align(center)[
-		цикл по $j = 1..N_x$\ $u_0^j = e^((j-1) h)$
+		цикл по $j = 1..N_x$\ $u_j^0 = e^((j-1) h)$
 	]),
 	edge("-|>"),
 	node((0,2), align(center)[
 		$n = N_t$
 	], shape: diamond),	
-	edge("d,r,u,l", "-|>", [Yes], label-pos: 0.1)
+	edge("-|>", [Yes]),
+	edge("-|>", (0,3), [No]),
+	node((1,2), [End], corner-radius: 2pt, extrude: (0, 3)),
+	node((0,3), align(center)[
+		Определение $α_1$, $#ptgk("b")_1$ из левого граничного условия\ $α_1 = 0$\ $#ptgk("b")_1 = e^((n+1) #ptgk("D") t)$
+	]),
+	edge("-|>"),
+	node((0,4), align(center)[
+		цикл по $j = 2, ..., N_x - 1$\ расчёт $a_j$, $b_j$, $c_j$, $#ptgk("ks")_j^n$; $α_j = - frac(a_j, b_j + c_j α_(j-1))$, $#ptgk("b") = frac(#ptgk("ks")_j^n - c_j #ptgk("b")_(j-1), b_j + c_j α_(j-1))$ 
+	]),
+	edge("-|>"),
+	node((0,5), align(center)[
+		Определение $u_N^(n+1)$ из правого граничного условия\ $u_N^(n+1) = e^((n+1) #ptgk("D") t + 1)$
+	]),
+	edge("-|>"),
+	node((0,6), align(center)[
+		цикл по $j = N_x - 1, ..., 1$\ $u_j^(n+1) = α_j u_(j+1)^(n+1) + #ptgk("b")_j$
+	]),
+	edge("-|>"),
+	node((0,7), align(center)[
+		$n = n + 1$
+	]),
+	edge("l,u,u,u,u,u,r", "-|>")
 )
