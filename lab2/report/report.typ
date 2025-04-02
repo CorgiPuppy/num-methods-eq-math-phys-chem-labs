@@ -247,12 +247,18 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 ])
 
 
+Составить алгоритм (блок-схему) расчёта: \
+
 #diagram(
 	node-stroke: 1pt,
 	node((0,0), [Start], corner-radius: 2pt, extrude: (0, 3)),
 	edge("-|>"),
 	node((0,1), align(center)[
-		Hey, wait,\ this flowchart\ is a trap!
-	], shape: diamond),
+		цикл по $j = 1..N_x$\ $u_0^j = e^((j-1) h)$
+	]),
+	edge("-|>"),
+	node((0,2), align(center)[
+		$n = N_t$
+	], shape: diamond),	
 	edge("d,r,u,l", "-|>", [Yes], label-pos: 0.1)
 )
