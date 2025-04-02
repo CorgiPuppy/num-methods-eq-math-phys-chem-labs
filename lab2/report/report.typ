@@ -190,7 +190,7 @@ $ -1 lt.eq frac(1, 1 + frac(4 #ptgk("D") t sin^2 frac(α, 2), h^2) ) lt.eq 1. $
 
 Преобразую неявную разностную схемы @implicit, группируя в левой части члены, содержащие значение функции #emph([u(t, x)]) на #emph([(n + 1)]) шаге по времени, а в правой части - все остальные члены:
 #set math.equation(numbering: "(1)", supplement: [уравнения])
-$ - frac(#ptgk("D") t, h^2)) u_(j+1)^(n+1) + (1+2 frac(#ptgk("D") t, h^2)) u_j^(n+1) - frac(#ptgk("D") t, h^2) u_(j-1)^(n+1) = u_j^n. $ <convinient>
+$ - frac(#ptgk("D") t, h^2) u_(j+1)^(n+1) + (1+2 frac(#ptgk("D") t, h^2)) u_j^(n+1) - frac(#ptgk("D") t, h^2) u_(j-1)^(n+1) = u_j^n. $ <convinient>
 Введу следующие обозначения:
 $ a_j = - frac(#ptgk("D") t, h^2);  b_j = (1+2 frac(#ptgk("D") t, h^2));  c_j = - frac(#ptgk("D") t, h^2);  #ptgk("ks")_j^n = u_j^n. $ <indicates>
 С учётом обозначений @indicates равенство @convinient будет иметь вид:
