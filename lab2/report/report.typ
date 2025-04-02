@@ -1,3 +1,5 @@
+#import "@preview/diverential:0.2.0": *
+#import "@preview/polytonoi:0.1.0": *
 #import "@preview/fletcher:0.5.7" as fletcher: diagram, node, edge
 #import fletcher.shapes: diamond
 
@@ -9,6 +11,7 @@
   }),
   block(radius: 1em, fill: luma(246), width: 100%, inset: 1em, it),
 )}
+#show table.cell.where(y: 0): strong
 
 #set page(
 	paper: "a4",
@@ -58,7 +61,7 @@
 		columns: (8.85cm,) + (10.8cm,),
 		stroke: none,
 
-		table.cell(text(size: 14.4pt, "Выполнил студент группы КС-36:"), align: right), table.cell(text(size: 14.4pt, "Золотухин Андрей Александрович"), align: left),
+		table.cell(text(size: 13.4pt, "Выполнил студент группы КС-36:"), align: right), table.cell(text(size: 14.4pt, "Золотухин Андрей Александрович"), align: left),
 		table.cell(text(size: 14.4pt, "Ссылка на репозиторий:"), align: right), table.cell(text(size: 14.4pt, "https://github.com/"), align: left),
 		table.cell("", align: right), table.cell(text(size: 14.4pt, "CorgiPuppy/"), align: left),
 		table.cell("", align: right), table.cell(text(size: 14.4pt, "num-methods-eq-math-phys-chem-labs"), align: left),
@@ -84,15 +87,69 @@
 #pagebreak()
 
 #align(center, block[
-	#outline(
-		
+	#outline(		
 		title: "Оглавление",
 	)
 ])
 
 #pagebreak()
 
-#set text(font: "Comic Neue", weight: 600) // testing: omit
+#align(center, block[
+	= Описание задачи
+])
+#set text(size: 12pt)
+#table(
+	columns: (auto, auto, auto, auto),
+	align: center + horizon,
+	table.header[Вариант][Уравнение][Интервалы переменных][Начальные и граничные условия],
+	[22], [$dvp(u, t) = dvp(u, x, deg: 2)$], [x in [0, 1] \ t in [0, 1]], [$u(t = 0, x) = e^x$ \ $u(t, x = 0) = e^t$ \ $u(t, x = 1) = e^(t+1)$],
+)
+Для заданного уравнения:
++ записать неявную разностную схему;
++ определить порядок аппроксимации разностной схемы;
++ доказать абсолютную устойчивость разностной схемы (с помощью метода гармоник);
++ привести схему к виду, удобному для использования метода прогонки;
++ проверить сходимость прогонки;
++ найти $α_1$, $#ptgk("b")_1$, $u_N^(n+1)$
++ записать рекуррентное прогоночное соотношение;
++ составить алгоритм (блок-схему) расчёта;
++ построить программу на любом удобном языке программирования;
++ провести численный расчёт с использованием различных значений #emph([#ptgk("D")t(0.1, 0.01, 0.001)]), #emph([h = 0.1]);
++ составить отчёт о проделанной работе;
++ сравнить результаты расчётов заданий №1 и №2 друг с другом, а также с истинными значениями функции #emph([u]) и в соответствующих точках разностной сетки (#emph([истинное решение уравнения будет выдано преподавателем после выполнения расчётов по явной и неявной разностным схемам)]).
+
+#pagebreak()
+
+#align(center, block[
+	= Выполнение задачи
+	== Задание 1
+]) \
+
+Записать неявную разностную схему: 
+#set math.equation(numbering: "(1)")
+$ frac(u_j^(n+1)-u_j^n, #ptgk("D")t) = frac(u_(j+1)^(n+1)-2u_j^(n+1)+u_(j-1)^(n+1), h^2). $ <implicit> \
+
+В записанной разностной схеме @implicit аппроксимация второй производной функции #emph([u(t, x)]) по координате рассматривается на #emph([n+1])-м шаге по времени, т.е. относительно точки $t^(n+1)$, для которой рассматривается аппроксимация всего уравнения. Такая разностная схема называется *неявной*.
+
+#align(center, block[
+	== Задание 2
+]) 
+Определить порядок аппроксимации разностной схемы @implicit:
+Для этого запишу разложение значений $u_j^(n+1)$, $u_(j+1)^(n+1)$, $u_j^(n+1)$, $u_(j-1)^(n+1)$ в ряд Тейлора относительно точки
+
+#align(center, block[
+	== Задание 3
+])
+Доказать абсолютную устойчивость разностной схемы @implicit (с помощью метода гармоник):
+Представляю решение разностной схемы в виде гармоники:
+$ u_j^n = #ptgk("l")^n e^(i α j). $ <harmonic>
+Подставляя @harmonic в разностную схему @implicit, получаю:
+$ frac(#ptgk("l")^(n+1) e^(i α j)-#ptgk("l")^n e^(i α j), #ptgk("D") t) = frac(#ptgk("l")^(n+1) e^(i α (j+1))-2#ptgk("l")^(n+1) e^(i α j)+#ptgk("l")^(n+1) e^(i α (j-1)), h^2). $
+Упрощаю полученное выражение, деля левую и правую его части на $#ptgk("l")^n e^(i α j)$
+Преобразую комплексные числа из экспоненциальной формы в тригонометрическую:
+$ e^(plus.minus i α) => cos α plus.minus sin α => frac(#ptgk("l")-1, #ptgk("D")) = frac(2 cos α-2, h^2). $
+Используя тригонометрические тождества
+$ cos α = cos^2 frac(α, 2) - sin^2 frac(α, 2) = 1 - 2 sin^2 frac(α, 2), $
 
 #diagram(
 	node-stroke: 1pt,
