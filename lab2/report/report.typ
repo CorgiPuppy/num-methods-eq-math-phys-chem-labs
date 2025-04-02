@@ -141,7 +141,7 @@ $ frac(u_j^(n+1)-u_j^n, #ptgk("D")t) = frac(u_(j+1)^(n+1)-2u_j^(n+1)+u_(j-1)^(n+
 
 Определить порядок аппроксимации разностной схемы @implicit:
 Для этого запишу разложение значений $u_j^(n+1)$, $u_(j+1)^(n+1)$, $u_(j-1)^(n+1)$ в ряд Тейлора относительно точки ($t^(n+1)$, $x_j$):
-$ u_j^n = u_j^(n+1) - dvp(u, t)|_j^(n+1) #ptgk("D") t + dvp(u, t, deg: 2)|_j^(n+1) frac((#ptgk("D") t)^2, 2!) + dvp(u, t, deg: 3)|_j^(n+1) frac((#ptgk("D") t)^3, 3!) + ..., $ <val1>
+$ u_j^n = u_j^(n+1) - dvp(u, t)|_j^(n+1) #ptgk("D") t + dvp(u, t, deg: 2)|_j^(n+1) frac((#ptgk("D") t)^2, 2!) - dvp(u, t, deg: 3)|_j^(n+1) frac((#ptgk("D") t)^3, 3!) + ..., $ <val1>
 $ u_(j+1)^(n+1) = u_j^(n+1) + dvp(u, x)|_j^(n+1) h + dvp(u, x, deg: 2)|_j^(n+1) frac(h^2, 2!) + dvp(u, x, deg: 3)|_j^(n+1) frac(h^3, 3) + dvp(u, x, deg: 4)|_j^(n+1) frac(h^4, 4) + ..., $ <val2>
 $ u_(j-1)^(n+1) = u_j^(n+1) - dvp(u, x)|_j^(n+1) h + dvp(u, x, deg: 2)|_j^(n+1) frac(h^2, 2!) - dvp(u, x, deg: 3)|_j^(n+1) frac(h^3, 3) + dvp(u, x, deg: 4)|_j^(n+1) frac(h^4, 4) + .... $ <val3>
 Подставляя зависимости @val1 - @val3 в разностную схему @implicit, получаю:
@@ -192,7 +192,7 @@ $ -1 lt.eq frac(1, 1 + frac(4 #ptgk("D") t sin^2 frac(α, 2), h^2) ) lt.eq 1. $
 #set math.equation(numbering: "(1)", supplement: [уравнения])
 $ - frac(#ptgk("D") t, h^2)) u_(j+1)^(n+1) + (1+2 frac(#ptgk("D") t, h^2)) u_j^(n+1) - frac(#ptgk("D") t, h^2) u_(j-1)^(n+1) = u_j^n. $ <convinient>
 Введу следующие обозначения:
-$ a_j = - frac(#ptgk("D") t, h^2));  b_j = (1+2 frac(#ptgk("D") t, h^2));  c_j = - frac(#ptgk("D") t, h^2);  #ptgk("ks")_j^n u_j^n. $ <indicates>
+$ a_j = - frac(#ptgk("D") t, h^2));  b_j = (1+2 frac(#ptgk("D") t, h^2));  c_j = - frac(#ptgk("D") t, h^2);  #ptgk("ks")_j^n = u_j^n. $ <indicates>
 С учётом обозначений @indicates равенство @convinient будет иметь вид:
 #set math.equation(numbering: none, supplement: [уравнения])
 $ a_j u_(j+1)^(n+1) + b_j u_j^(n+1) + c_j u_(j-1)^(n+1) = #ptgk("ks")_j^n $
