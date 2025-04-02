@@ -14,7 +14,16 @@ int main() {
 	for (int i = 0; i < Constants::amount_of_delta_t; i++)
 		std::cout << N_t[i] << std::endl;
 	
-	int u[N_x][N_t] = {0};
+	double u[N_x][N_t[0]] = {0.0};
+
+	for (int j = 1; j < N_x; j++)
+		u[0][j] = (j - 1) + 1;
+
+	for (int n = 0; n < N_t[0]; n++) {
+		for (int j = 0; j < N_x; j++)
+		       std::cout << u[n][j] << " ";
+		std::cout << std::endl;
+	}
 
 	return 0;
 }
