@@ -128,7 +128,7 @@
 
 
 Записать неявную разностную схему: 
-#set math.equation(numbering: "(1)")
+#set math.equation(numbering: "(1)", supplement: [уравнения])
 $ frac(u_j^(n+1)-u_j^n, #ptgk("D")t) = frac(u_(j+1)^(n+1)-2u_j^(n+1)+u_(j-1)^(n+1), h^2). $ <implicit> \
 
 В записанной разностной схеме @implicit аппроксимация второй производной функции #emph([u(t, x)]) по координате рассматривается на #emph([n+1])-м шаге по времени, т.е. относительно точки $t^(n+1)$, для которой рассматривается аппроксимация всего уравнения. Такая разностная схема называется *неявной*.
@@ -144,7 +144,7 @@ $ u_j^n = u_j^(n+1) - dvp(u, t)|_j^(n+1) #ptgk("D") t + dvp(u, t, deg: 2)|_j^(n+
 $ u_(j+1)^(n+1) = u_j^(n+1) + dvp(u, x)|_j^(n+1) h + dvp(u, x, deg: 2)|_j^(n+1) frac(h^2, 2!) + dvp(u, x, deg: 3)|_j^(n+1) frac(h^3, 3) + dvp(u, x, deg: 4)|_j^(n+1) frac(h^4, 4) + ..., $ <val2>
 $ u_(j-1)^(n+1) = u_j^(n+1) - dvp(u, x)|_j^(n+1) h + dvp(u, x, deg: 2)|_j^(n+1) frac(h^2, 2!) - dvp(u, x, deg: 3)|_j^(n+1) frac(h^3, 3) + dvp(u, x, deg: 4)|_j^(n+1) frac(h^4, 4) + .... $ <val3>
 Подставляя зависимости @val1 - @val3 в разностную схему @implicit, получаю:
-#set math.equation(numbering: none)
+#set math.equation(numbering: none, supplement: [уравнения])
 $ dvp(u, t)|_j^(n+1) - dvp(u, t, deg: 2)|_j^(n+1) frac((#ptgk("D") t), 2!) + dvp(u, t, deg: 3)|_j^(n+1) frac((#ptgk("D") t)^2, 3!) - ... = dvp(u, x, deg: 2)|_j^(n+1) frac(h^2, 2!) + dvp(u, x, deg: 4)|_j^(n+1) frac(h^4, 4) + ... $
 $ => dvp(u, t)|_j^(n+1) + O(#ptgk("D") t) = dvp(u, x, deg: 2)|_j^(n+1) + O(h^2). $
 Таким образом, неявная разностная схема @implicit аппроксимирует исходное дифференциальное уравнение с первым порядком по времени и со вторым порядком по координате, что записывается в следующем виде:
@@ -157,11 +157,11 @@ $ O(#ptgk("D") t) + O(h^2) #text([или]) O(#ptgk("D") t, h^2). $
 Доказать абсолютную устойчивость разностной схемы @implicit (с помощью метода гармоник): \
 
 Представляю решение разностной схемы в виде гармоники:
-#set math.equation(numbering: "(1)")
+#set math.equation(numbering: "(1)", supplement: [уравнения])
 $ u_j^n = #ptgk("l")^n e^(i α j). $ <harmonic>
 
 Подставляя @harmonic в разностную схему @implicit, получаю:
-#set math.equation(numbering: none)
+#set math.equation(numbering: none, supplement: [уравнения])
 $ frac(#ptgk("l")^(n+1) e^(i α j)-#ptgk("l")^n e^(i α j), #ptgk("D") t) = frac(#ptgk("l")^(n+1) e^(i α (j+1))-2#ptgk("l")^(n+1) e^(i α j)+#ptgk("l")^(n+1) e^(i α (j-1)), h^2). $
 
 Упрощаю полученное выражение, деля левую и правую его части на $#ptgk("l")^n e^(i α j)$:
@@ -188,12 +188,12 @@ $ -1 lt.eq frac(1, 1 + frac(4 #ptgk("D") t sin^2 frac(α, 2), h^2) ) lt.eq 1. $
 Привести схему к виду, удобному для использования метода прогонки: \
 
 Преобразую неявную разностную схемы @implicit, группируя в левой части члены, содержащие значение функции #emph([u(t, x)]) на #emph([(n + 1)]) шаге по времени, а в правой части - все остальные члены:
-#set math.equation(numbering: "(1)")
+#set math.equation(numbering: "(1)", supplement: [уравнения])
 $ - frac(#ptgk("D") t, h^2)) u_(j+1)^(n+1) + (1+2 frac(#ptgk("D") t, h^2)) u_j^(n+1) - frac(#ptgk("D") t, h^2) u_(j-1)^(n+1) = u_j^n. $ <convinient>
 Введу следующие обозначения:
 $ a_j = - frac(#ptgk("D") t, h^2));  b_j = (1+2 frac(#ptgk("D") t, h^2));  c_j = - frac(#ptgk("D") t, h^2);  #ptgk("ks")_j^n u_j^n. $ <indicates>
 С учётом обозначений @indicates равенство @convinient будет иметь вид:
-#set math.equation(numbering: none)
+#set math.equation(numbering: none, supplement: [уравнения])
 $ a_j u_(j+1)^(n+1) + b_j u_j^(n+1) + c_j u_(j-1)^(n+1) = #ptgk("ks")_j^n $
 Данное преобразование называется #emph([преобразованием неявной разностной схемы к виду, удобному для использования метода прогонки]).
 
@@ -208,6 +208,34 @@ $ a_j u_(j+1)^(n+1) + b_j u_j^(n+1) + c_j u_(j-1)^(n+1) = #ptgk("ks")_j^n $
 $ abs(a_j) + abs(c_j) < abs(b_j) $
 Легко видеть, что для разностной схемы достаточное условие сходимости прогонки выполняется:
 $ abs(a_j) + abs(c_j) = 2 frac(#ptgk("D") t, h^2) < 1 + 2 frac(#ptgk("D") t, h^2) = abs(b_j) $
+
+#align(center, block[
+	== Задание 6
+])
+
+
+Найти $α_1$, $#ptgk("b")_1$, $u_N^(n+1)$: \
+
+Для реализации неявной разностной схемы требуется ввести некоторое дополнительно условие, связывающее значения функции #emph([u(t, x)]) на #emph([(n+1)])-м шаге по времени. Представлю это дополнительное условие в виде линейной зависимости
+#set math.equation(numbering: "(1)", supplement: [уравнения])
+$ u_j^(n+1) = α_j u_(j+1)^(n+1) + #ptgk("b")_j, $ <recurrent> 
+справедливой для любого значений #emph([j = 1, ..., N-1]). \
+
+Соотношение @recurrent называют *рекуррентным прогоночным соотношением*, а коэффициенты #emph([α_j]), $#ptgk("b")_j$ - *прогоночными коэффициентами*. \
+
+Для определния прогоночных коэффициентов на 1-м шаге по координате #emph([x]), использую рекуррентное прогоночное соотношение @recurrent, записанное для #emph([j = 1]):
+#set math.equation(numbering: none)
+$ u_1^(n+1) = α_1 u_2^(n+1) + #ptgk("b")_1, $
+и левое граничное условие:
+$ u_1^(n+1) = e^((n+1) #ptgk("D") t) $
+Сравнивая эти два соотношения, получаю:
+$ α_1 = 0, #ptgk("b")_1 = e^((n+1) #ptgk("D") t). $
+
+#align(center, block[
+	== Задание 7
+])
+
+
 
 #diagram(
 	node-stroke: 1pt,
