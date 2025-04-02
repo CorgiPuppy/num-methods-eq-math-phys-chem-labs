@@ -95,6 +95,7 @@
 
 #pagebreak()
 
+#set page(numbering: "1")
 #align(center, block[
 	= Описание задачи
 ])
