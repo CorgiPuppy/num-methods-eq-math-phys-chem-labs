@@ -241,7 +241,7 @@
 			\node (start) [start] {};
 			\node (in1) [process, below of=start] {\makecell{Задание начальных условий: \\ цикл по $j=1..N_{x}$ \\ $u_{j}^{0} = e^{(j - 1)h}$}};
 			\node (in2) [process, below of=in1] {$n = 0$};
-			\node (dec) [decision, below of=in2, yshift=-1cm] {$n \textgreater N_{x}$};
+			\node (dec) [decision, below of=in2, yshift=-1cm] {$n = N_{t}$};
 			\node (stop) [stop, right of=dec, xshift=2cm] {};
 			\node (pr1) [process, below of=dec, yshift=-1cm] {\makecell{цикл по $j=2..N_{x}-1$ \\ $u_{j}^{n+1} = u_{j}^{n} + \frac{\Delta t}{h^{2}}(u_{j+1}^{n} - 2u_{j}^{n} + u_{j-1}^{n})$ }};
 			\node (pr2) [process, below of=pr1, yshift=-1cm] {\makecell{Определение $u_{1}^{n+1}$ и $u_{N_{x}}^{n+1}$ из граничных условий \\ $u_{1}^{n+1} = e^{(n + 1)\Delta t}$ \\ $u_{N_{x}}^{n+1} = e^{(n + 1)\Delta t + 1}$}};
