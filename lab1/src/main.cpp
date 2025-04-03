@@ -27,16 +27,34 @@ int main() {
 		n++;
 	}
 
-	std::ofstream file (Constants::path);
+	std::ofstream csvFile(Constants::csvPath);	
+	csvFile << "t\\x,";
+	for (int j = 0; j <= N_x - 1; j++) {
+		csvFile << j * Constants::h;
+		if (j != (N_x - 1)) csvFile << ",";
+	}
+	csvFile << "\n";
+	for (int n = 0; n < N_t[0]; n++) {
+		double t = (n + 1) * Constants::delta_t[2];
+		csvFile << t << ",";
+		for (int j = 0; j < N_x; j++) {
+			csvFile << u[n][j];
+			if (j != (N_x - 1)) csvFile << ",";
+		}
+		csvFile << "\n";
+	}
+	csvFile.close();
+
+	std::ofstream plotPath (Constants::plotPath);
 	for (int n = 0; n <= N_t[0] - 1; n++) {
 		double t = n * Constants::delta_t[2];
 		for (int j = 0; j <= N_x - 1; j++) {
 			double x = j * Constants::h;
-			file << t << " " << x << " " << u[n][j] << "\n";
+			plotPath << t << " " << x << " " << u[n][j] << "\n";
 		}
-		file << "\n";
+		plotPath << "\n";
 	}
-	file.close();
+	plotPath.close();
 
 	return 0;
 }
