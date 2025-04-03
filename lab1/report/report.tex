@@ -267,14 +267,13 @@
 	\lstset{style=mystyle}
 	\lstinputlisting[language=C++]{src/main.cpp}
 
-	\subsection*{Задание 6}
-	\addcontentsline{toc}{subsection}{Задание 6}
+	\subsection*{Задание 7}
+	\addcontentsline{toc}{subsection}{Задание 7}
 	\large
-
 	Провести численный расчёт с использованием различных значений $ \Delta t (0.1, 0.01, 0.001)$, $ h = 0.1 $:
-
 	\begin{table}[h]
 	\centering
+	\small
 	\caption{Результаты}
 	\label{tab:results}
 	\csvreader[
@@ -285,7 +284,43 @@
 	  late after last line=\\\hline,
 	  head to column names,
 	  respect all
-	]{outputs/output.csv}{}{
+	]{outputs/output_0.1.csv}{}{
+	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+	}
+	\end{table}
+
+	\begin{table}[h]
+	\centering
+	\small
+	\caption{Результаты}
+	\label{tab:results}
+	\csvreader[
+	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
+	  table head=\hline
+	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
+	  late after line=\\,
+	  late after last line=\\\hline,
+	  head to column names,
+	  respect all
+	]{outputs/output_0.01.csv}{}{
+	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+	}
+	\end{table}
+
+	\begin{table}[h]
+	\centering
+	\small
+	\caption{Результаты}
+	\label{tab:results}
+	\csvreader[
+	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
+	  table head=\hline
+	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
+	  late after line=\\,
+	  late after last line=\\\hline,
+	  head to column names,
+	  respect all
+	]{outputs/output_0.001.csv}{}{
 	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
 	}
 	\end{table}
@@ -295,6 +330,12 @@
 	\large
 	Составить отчёт о проделанной работе. График фукнции \textit{u(t, x)}
 	\begin{center}
-		\includegraphics[width=500pt]{u_t_x.png}
+		\includegraphics[width=500pt]{u_t_x_0.1.png}
+	\end{center}
+	\begin{center}
+		\includegraphics[width=500pt]{u_t_x_0.01.png}
+	\end{center}
+	\begin{center}
+		\includegraphics[width=500pt]{u_t_x_0.001.png}
 	\end{center}
 \end{document}

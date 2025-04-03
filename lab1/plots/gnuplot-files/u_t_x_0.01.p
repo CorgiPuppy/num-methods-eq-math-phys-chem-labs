@@ -5,5 +5,5 @@ set xlabel "x"
 set ylabel "t"
 set zlabel "u(t, x)"
 
-set output "plots/pictures/u_t_x.png"
-splot "plots/dat-files/u_t_x.dat" title "" with linespoints palette
+set output "plots/pictures/u_t_x_0.01.png"
+splot "plots/dat-files/u_t_x_0.01.dat" title "" with linespoints palette
