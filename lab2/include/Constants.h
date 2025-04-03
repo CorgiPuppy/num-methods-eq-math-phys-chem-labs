@@ -14,8 +14,16 @@ namespace Constants {
 	const double delta_t[] = { 0.1, 0.01, 0.001 };
 	const double h = 0.1;
 	
-	const std::string csvPath = "outputs/output.csv";
-	const std::string plotPath = "plots/dat-files/u_t_x.dat";
+	const std::string csvPath[] = {
+		"outputs/output_0.1.csv",
+		"outputs/output_0.01.csv",
+		"outputs/output_0.001.csv"
+	};
+	const std::string plotPath[] = {
+		"plots/dat-files/u_t_x_0.1.dat",
+		"plots/dat-files/u_t_x_0.01.dat",
+		"plots/dat-files/u_t_x_0.001.dat"
+	};
 }
 
 #endif

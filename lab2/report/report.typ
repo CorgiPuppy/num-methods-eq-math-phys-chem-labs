@@ -300,7 +300,17 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 
 
 Провести численный расчёт с использованием различных значений #emph([#ptgk("D")t(0.1, 0.01, 0.001)]), #emph([h = 0.1]):
-#let results = csv("../outputs/output.csv")
+#let results = csv("../outputs/output_0.1.csv")
+#table(
+	columns: 12,
+	..results.flatten(),
+)
+#let results = csv("../outputs/output_0.01.csv")
+#table(
+	columns: 12,
+	..results.flatten(),
+)
+#let results = csv("../outputs/output_0.001.csv")
 #table(
 	columns: 12,
 	..results.flatten(),
@@ -313,7 +323,17 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 
 Составить отчёт о проделанной работе. График функции #emph([u(t, x)]) (@plot).
 #figure(
-	image("../plots/pictures/u_t_x.png"),
+	image("../plots/pictures/u_t_x_0.1.png"),
 	caption: [График функции #emph([u(t, x)]).],
 	supplement: [Рис.],
 ) <plot>
+#figure(
+	image("../plots/pictures/u_t_x_0.01.png"),
+	caption: [График функции #emph([u(t, x)]).],
+	supplement: [Рис.],
+)
+#figure(
+	image("../plots/pictures/u_t_x_0.001.png"),
+	caption: [График функции #emph([u(t, x)]).],
+	supplement: [Рис.],
+)
