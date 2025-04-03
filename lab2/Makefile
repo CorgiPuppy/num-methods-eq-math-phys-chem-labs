@@ -1,6 +1,7 @@
 SRC_DIR := src
 INC_DIR := include
 TARGET_DIR := target
+GNUPLOT_DIR := plots/gnuplot-files
 REPORT_DIR := report
 
 RPRT := $(REPORT_DIR)/report.pdf
@@ -8,15 +9,17 @@ EXE := $(TARGET_DIR)/main
 INC := $(wildcard $(INC_DIR)/*.h)
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(TARGET_DIR)/%.o, $(SRC))
+GNP := $(wildcard $(GNUPLOT_DIR)/*.p)
 
 CPPC := g++
 CPPFLAGS := -lpthread -Wall
 TPST := typst compile --root .
+GNPLT := gnuplot
 ZTHR := zathura
 
 .PHONY: all
 
-all: clean-report run-src run-report clean-target
+all: clean-report run-src compile-gnp run-report clean-target
 
 run-src: $(EXE)
 	@echo "Running.."
@@ -33,6 +36,10 @@ $(TARGET_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC) | $(TARGET_DIR)
 $(TARGET_DIR):
 	@echo "Create a target dir.."
 	@mkdir -p $@
+
+compile-gnp: $(GNP)
+	@echo "Compile gnuplot files.."
+	@$(foreach file_name, $(GNP), $(GNPLT) $(file_name);)
 
 run-report: $(RPRT)
 	@echo "Running a report.."
