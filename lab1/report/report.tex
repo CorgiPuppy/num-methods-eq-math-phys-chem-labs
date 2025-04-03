@@ -55,7 +55,7 @@
 }
 
 \usepackage{graphicx}
-\graphicspath{ plots/pictures }
+\graphicspath{ {plots/pictures/} }
 
 \begin{document}
 	\begin{titlepage}
@@ -255,5 +255,20 @@
 			\draw [arrow] (pr2) -- (pr3);
 			\draw [arrow] (pr3.west) -- ++(left:5cm) -| +(up:9cm) -- (dec.west);
 		\end{tikzpicture}
+	\end{center}
+
+	\subsection*{Задание 8}
+	\addcontentsline{toc}{subsection}{Задание 8}
+	\large
+	Построить программу на любом удобном языке программирования:
+	\lstset{style=mystyle}
+	\lstinputlisting[language=C++]{src/main.cpp}
+
+	\subsection*{Задание 8}
+	\addcontentsline{toc}{subsection}{Задание 8}
+	\large
+	Составить отчёт о проделанной работе. График фукнции \textit{u(t, x)}
+	\begin{center}
+		\includegraphics[width=500pt]{u_t_x.png}
 	\end{center}
 \end{document}
