@@ -295,6 +295,18 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 #raw(codeblock, block:true, lang: "c++")
 
 #align(center, block[
+	== Задание 10
+])
+
+
+Провести численный расчёт с использованием различных значений #emph([#ptgk("D")t(0.1, 0.01, 0.001)]), #emph([h = 0.1]):
+#let results = csv("../outputs/output.csv")
+#table(
+	columns: 12,
+	..results.flatten(),
+)
+
+#align(center, block[
 	== Задание 11
 ])
 
