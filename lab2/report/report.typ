@@ -247,7 +247,6 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 	== Задание 8
 ])
 
-
 Составить алгоритм (блок-схему) расчёта: \
 
 #diagram(
@@ -285,3 +284,24 @@ $ u_N^(n+1) = e^((n+1) #ptgk("D") t + 1). $
 	]),
 	edge("l,u,u,u,u,u,r", "-|>")
 )
+
+#align(center, block[
+	== Задание 9
+])
+
+
+Построить программу на любом удобном языке программирования:
+#let codeblock = read("../src/main.cpp")
+#raw(codeblock, block:true, lang: "c++")
+
+#align(center, block[
+	== Задание 11
+])
+
+
+Составить отчёт о проделанной работе. График функции #emph([u(t, x)]) (@plot).
+#figure(
+	image("../plots/pictures/u_t_x.png"),
+	caption: [График функции #emph([u(t, x)]).],
+	supplement: [Рис.],
+) <plot>
