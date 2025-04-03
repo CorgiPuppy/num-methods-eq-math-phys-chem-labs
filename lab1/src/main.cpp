@@ -24,10 +24,10 @@ int main() {
 		int n = 0;
 		while (!(n == (N_t[i] - 1))) {
 			for (int j = 1; j <= N_x - 2; j++)
-				u[n + 1][j] = u[n][j] + (Constants::delta_t[2]) / (std::pow(Constants::h, 2)) * (u[n][j + 1] - 2 * u[n][j] + u[n][j - 1]);
+				u[n + 1][j] = u[n][j] + (Constants::delta_t[i]) / (std::pow(Constants::h, 2)) * (u[n][j + 1] - 2 * u[n][j] + u[n][j - 1]);
 			
-			u[n + 1][0] = std::exp((n + 1) * Constants::delta_t[2]);
-			u[n + 1][N_x - 1] = std::exp((n + 1) * Constants::delta_t[2] + 1);
+			u[n + 1][0] = std::exp((n + 1) * Constants::delta_t[i]);
+			u[n + 1][N_x - 1] = std::exp((n + 1) * Constants::delta_t[i] + 1);
 		
 			n++;
 		}
@@ -40,7 +40,7 @@ int main() {
 		}
 		csvFile << "\n";
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[2];
+			double t = (n + 1) * Constants::delta_t[i];
 			csvFile << t << ",";
 			for (int j = 0; j < N_x; j++) {
 				csvFile << u[n][j];
@@ -52,7 +52,7 @@ int main() {
 
 		std::ofstream plotPath (Constants::plotPath[i]);
 		for (int n = 0; n <= N_t[i] - 1; n++) {
-			double t = n * Constants::delta_t[2];
+			double t = n * Constants::delta_t[i];
 			for (int j = 0; j <= N_x - 1; j++) {
 				double x = j * Constants::h;
 				plotPath << t << " " << x << " " << u[n][j] << "\n";
