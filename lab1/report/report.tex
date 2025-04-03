@@ -57,6 +57,9 @@
 \usepackage{graphicx}
 \graphicspath{ {plots/pictures/} }
 
+\usepackage{booktabs}
+\usepackage{csvsimple}
+
 \begin{document}
 	\begin{titlepage}
 		\begin{center}
@@ -257,12 +260,35 @@
 		\end{tikzpicture}
 	\end{center}
 
-	\subsection*{Задание 8}
-	\addcontentsline{toc}{subsection}{Задание 8}
+	\subsection*{Задание 6}
+	\addcontentsline{toc}{subsection}{Задание 6}
 	\large
 	Построить программу на любом удобном языке программирования:
 	\lstset{style=mystyle}
 	\lstinputlisting[language=C++]{src/main.cpp}
+
+	\subsection*{Задание 6}
+	\addcontentsline{toc}{subsection}{Задание 6}
+	\large
+
+	Провести численный расчёт с использованием различных значений $ \Delta t (0.1, 0.01, 0.001)$, $ h = 0.1 $:
+
+	\begin{table}[h]
+	\centering
+	\caption{Результаты}
+	\label{tab:results}
+	\csvreader[
+	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
+	  table head=\hline
+	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
+	  late after line=\\,
+	  late after last line=\\\hline,
+	  head to column names,
+	  respect all
+	]{outputs/output.csv}{}{
+	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+	}
+	\end{table}
 
 	\subsection*{Задание 8}
 	\addcontentsline{toc}{subsection}{Задание 8}
