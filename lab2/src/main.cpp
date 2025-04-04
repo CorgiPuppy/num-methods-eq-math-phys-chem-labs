@@ -30,18 +30,18 @@ int main() {
 		int n = 0;
 		while (!(n == (N_t[i] - 1))) {
 			alpha[0] = 0.0;
-			beta[0] = std::exp((n + 1) * Constants::delta_t[2]);
+			beta[0] = std::exp((n + 1) * Constants::delta_t[i]);
 
 			for (int j = 1; j <= N_x - 2; j++) {
-				a[j] = - (Constants::delta_t[2]) / (std::pow(Constants::h, 2));
-				b[j] = 1 + 2 * (Constants::delta_t[2]) / (std::pow(Constants::h, 2));
-				c[j] = - (Constants::delta_t[2]) / (std::pow(Constants::h, 2));
+				a[j] = - (Constants::delta_t[i]) / (std::pow(Constants::h, 2));
+				b[j] = 1 + 2 * (Constants::delta_t[i]) / (std::pow(Constants::h, 2));
+				c[j] = - (Constants::delta_t[i]) / (std::pow(Constants::h, 2));
 				ksi[j] = u[n][j];
 				alpha[j] = - (a[j]) / (b[j] + c[j] * alpha[j - 1]);
 				beta[j] = (ksi[j] - c[j] * beta[j - 1]) / (b[j] + c[j] * alpha[j - 1]);
 			}
 			
-			u[n + 1][N_x - 1] = std::exp((n + 1) * Constants::delta_t[2] + 1);
+			u[n + 1][N_x - 1] = std::exp((n + 1) * Constants::delta_t[i] + 1);
 			
 			for (int j = N_x - 2; j >= 0; j--) {
 				u[n + 1][j] = alpha[j] * u[n + 1][j + 1] + beta[j];
@@ -58,7 +58,7 @@ int main() {
 		}
 		csvFile << "\n";
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[2];
+			double t = (n + 1) * Constants::delta_t[i];
 			csvFile << t << ",";
 			for (int j = 0; j < N_x; j++) {
 				csvFile << u[n][j];
@@ -70,7 +70,7 @@ int main() {
 
 		std::ofstream plotFile(Constants::plotPath[i]);
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[2];
+			double t = (n + 1) * Constants::delta_t[i];
 			for (int j = 0; j < N_x; j++) {
 				double x = j * Constants::h;
 				plotFile << t << " " << x << " " << u[n][j] << "\n";
