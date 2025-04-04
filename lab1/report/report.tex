@@ -59,6 +59,8 @@
 
 \usepackage{booktabs}
 \usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{caption}
 
 \begin{document}
 	\begin{titlepage}
@@ -82,7 +84,7 @@
 					& CorgiPuppy/ \\
 					& num-methods-eq-math-phys-chem-labs \\
 					Принял: & Лебедев Данила Александрович \\
-					Дата сдачи: & 02.04.2025 \\
+					Дата сдачи: & 04.04.2025 \\
 				\end{tabular}
 			\end{flushright}
 
@@ -307,23 +309,32 @@
 	}
 	\end{table}
 
-	\begin{table}[h]
-	\centering
+	\begin{center}
 	\small
-	\caption{Результаты}
-	\label{tab:results}
-	\csvreader[
-	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
-	  table head=\hline
-	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
-	  late after line=\\,
-	  late after last line=\\\hline,
-	  head to column names,
-	  respect all
-	]{outputs/output_0.001.csv}{}{
-	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
-	}
-	\end{table}
+	\captionof{table}{Результаты для $\Delta t = 0.001$}
+	\label{tab:results_0001}
+		\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline
+		\endfirsthead  % Заголовок на первой странице
+
+		\hline
+		$t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline
+		\endhead  % Заголовок на последующих страницах
+
+		\hline
+		\endfoot  % Нижний колонтитул таблицы
+
+		\csvreader[
+		  late after line=\\,
+		  late after last line=\\\hline,
+		  head to column names,
+		  respect all
+		]{outputs/output_0.001.csv}{}{
+		  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+		}
+		\end{longtable}
+	\end{center}
 
 	\subsection*{Задание 8}
 	\addcontentsline{toc}{subsection}{Задание 8}
