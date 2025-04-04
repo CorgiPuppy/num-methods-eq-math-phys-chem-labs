@@ -58,7 +58,7 @@ int main() {
 		}
 		csvFile << "\n";
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[i];
+			double t = n * Constants::delta_t[i];
 			csvFile << t << ",";
 			for (int j = 0; j < N_x; j++) {
 				csvFile << u[n][j];
@@ -70,7 +70,7 @@ int main() {
 
 		std::ofstream plotFile(Constants::plotPath[i]);
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[i];
+			double t = n * Constants::delta_t[i];
 			for (int j = 0; j < N_x; j++) {
 				double x = j * Constants::h;
 				plotFile << t << " " << x << " " << u[n][j] << "\n";
