@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <fstream>
+#include <iomanip>
 
 #include "../include/Constants.h"
 
@@ -33,6 +34,8 @@ int main() {
 		}
 
 		std::ofstream csvFile(Constants::csvPath[i]);	
+		csvFile << std::fixed << std::setprecision(4);
+
 		csvFile << "t\\x,";
 		for (int j = 0; j <= N_x - 1; j++) {
 			csvFile << j * Constants::h;
@@ -40,7 +43,7 @@ int main() {
 		}
 		csvFile << "\n";
 		for (int n = 0; n < N_t[i]; n++) {
-			double t = (n + 1) * Constants::delta_t[i];
+			double t = n * Constants::delta_t[i];
 			csvFile << t << ",";
 			for (int j = 0; j < N_x; j++) {
 				csvFile << u[n][j];
