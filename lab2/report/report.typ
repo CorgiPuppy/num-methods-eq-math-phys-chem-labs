@@ -67,7 +67,7 @@
 		table.cell("", align: right), table.cell(text(size: 14.4pt, "CorgiPuppy/"), align: left),
 		table.cell("", align: right), table.cell(text(size: 14.4pt, "num-methods-eq-math-phys-chem-labs"), align: left),
 		table.cell(text(size: 14.4pt, "Принял:"), align: right), table.cell(text(size: 14.4pt, "Лебедев Данила Александрович"), align: left),
-		table.cell(text(size: 14.4pt, "Дата сдачи:"), align: right), table.cell(text(size: 14.4pt, "02.04.25"), align: left),
+		table.cell(text(size: 14.4pt, "Дата сдачи:"), align: right), table.cell(text(size: 14.4pt, "04.04.25"), align: left),
 		
 	)
 ]
@@ -222,7 +222,7 @@ $ abs(a_j) + abs(c_j) = 2 frac(#ptgk("D") t, h^2) < 1 + 2 frac(#ptgk("D") t, h^2
 $ u_j^(n+1) = α_j u_(j+1)^(n+1) + #ptgk("b")_j, $ <recurrent> 
 справедливой для любого значений #emph([j = 1, ..., N-1]). \
 
-Соотношение @recurrent называют *рекуррентным прогоночным соотношением*, а коэффициенты #emph([α_j]), $#ptgk("b")_j$ - *прогоночными коэффициентами*. \
+Соотношение @recurrent называют *рекуррентным прогоночным соотношением*, а коэффициенты $α_j$, $#ptgk("b")_j$ - *прогоночными коэффициентами*. \
 
 Для определния прогоночных коэффициентов на 1-м шаге по координате #emph([x]), использую рекуррентное прогоночное соотношение @recurrent, записанное для #emph([j = 1]):
 #set math.equation(numbering: none)
