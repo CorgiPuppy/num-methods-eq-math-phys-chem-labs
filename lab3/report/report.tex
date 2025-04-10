@@ -297,22 +297,38 @@
 	\addcontentsline{toc}{subsection}{Задание 8}
 	\large
 	Провести численный расчёт с использованием значений $ \Delta t = 0.1$, $ h = 0.1 $:
-	\begin{table}[h]
-	\centering
+		\begin{center}
 	\small
-	\caption{Результаты}
-	\label{tab:results}
-	\csvreader[
-	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
-	  table head=\hline
-	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
-	  late after line=\\,
-	  late after last line=\\\hline,
-	  head to column names,
-	  respect all
-	]{outputs/output_0.1.csv}{}{
-	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
-	}
-	\end{table}
+	\captionof{table}{Результаты для $\Delta t = 0.1$}
+	\label{tab:results_01}
+		\begin{longtable}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline
+		\endfirsthead
 
+		\hline
+		$t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline
+		\endhead
+
+		\hline
+		\endfoot
+
+		\csvreader[
+		  late after line=\\,
+		  late after last line=\\\hline,
+		  head to column names,
+		  respect all
+		]{outputs/output_0.1.csv}{}{
+		  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+		}
+		\end{longtable}
+	\end{center}
+
+	\subsection*{Задание 9}
+	\addcontentsline{toc}{subsection}{Задание 9}
+	\large
+	Составить отчёт о проделанной работе. График функции \textit{u(t, x)}
+	\begin{center}
+		\includegraphics[width=500pt]{u_t_x_0.1.png}
+	\end{center}
 \end{document}
