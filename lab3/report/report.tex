@@ -124,7 +124,7 @@
 		\item выбор граничного условия зависит от того, с какой конечной разностью вы будете работать (левой или правой). Выбор конечной разности зависит от устойчивости системы. Вы должны выбрать ту конечную разность, при которой схема будет устойчива;
 		\item составить алгоритм (блок-схему) расчёта;
 		\item построить программу на любом удобном языке программирования;
-		\item провести численный расчёт с использованием различных значений $ \Delta t = 0.1 $, $ h = 0.1 $;
+		\item провести численный расчёт с использованием значений $ \Delta t = 0.1 $, $ h = 0.1 $;
 		\item сравнить результаты расчётов с истинными значениями функции \textit{u} в соответствующих точках разностной сетки (\textit{истинное} \textit{решение} \textit{уравнения} \textit{будет} \textit{выдано} \textit{преподавателем} \textit{после} \textit{выполнения} \textit{расчётов} \textit{по} \textit{разностной} \textit{схеме});
 		\item в случае существенного расхождения результатов расчётов по разностной схеме и истинных значений функции \textit{u} в соответствующих точках разностной сетки выполнить расчёт с меньшими значениями $ \Delta t $ и/или $ h $ (\textit{выбор} \textit{осуществить} \textit{самостоятельно}) с целью получения более точных результатов.
 	\end{enumerate}
@@ -268,11 +268,11 @@
 	\begin{center}
 		\begin{tikzpicture}[node distance=2cm]
 			\node (start) [start] {Start};
-			\node (in1) [process, below of=start, yshift=-0.5cm] {\makecell{Задание начальных условий: \\ цикл по $j=1..N_{x}$ \\ $u_{j}^{0} = (j - 1)h$}};
+			\node (in1) [process, below of=start, yshift=-0.5cm] {\makecell{Задание начальных условий: \\ цикл по $j=1..N_{x}$ \\ $u_{j}^{0} = 0$}};
 			\node (in2) [process, below of=in1] {$n = 0$};
 			\node (dec) [decision, below of=in2, yshift=-1cm] {$n = N_{t}$};
 			\node (stop) [stop, right of=dec, xshift=2cm] {End};
-			\node (pr1) [process, below of=dec, yshift=-1cm] {\makecell{Определение $u_{N_{x}}^{n+1}$ из граничного условия \\ $u_{N}^{n+1} = ((n + 1)\Delta t)^2 + (n + 1)\Delta t.$}};
+			\node (pr1) [process, below of=dec, yshift=-1cm] {\makecell{Определение $u_{N_{x}}^{n+1}$ из граничного условия \\ $u_{N_{x}}^{n+1} = ((n + 1)\Delta t)^2 + (n + 1)\Delta t.$}};
 			\node (pr2) [process, below of=pr1, yshift=-0.5cm] {\makecell{цикл по $j=N_{x}-1..1$ \\ $u_{j}^{n+1} = \frac{u_{j}^{n} + 2\frac{\Delta t}{h}u_{j+1}^{n+1} + \Delta t((j - 1)h)}{1 + 2\frac{\Delta t}{h}}$}};
 			\node (pr3) [process, below of=pr2, yshift=-0.5cm] {$n = n + 1$};
 			\draw [arrow] (start) -- (in1);
@@ -285,4 +285,34 @@
 			\draw [arrow] (pr3.west) -- ++(left:5cm) -| +(up:8cm) -- (dec.west);
 		\end{tikzpicture}
 	\end{center}	
+
+	\subsection*{Задание 7}
+	\addcontentsline{toc}{subsection}{Задание 7}
+	\large
+	Построить программу на любом удобном языке программирования:
+	\lstset{style=mystyle}
+	\lstinputlisting[language=C++]{src/main.cpp}
+
+	\subsection*{Задание 8}
+	\addcontentsline{toc}{subsection}{Задание 8}
+	\large
+	Провести численный расчёт с использованием значений $ \Delta t = 0.1$, $ h = 0.1 $:
+	\begin{table}[h]
+	\centering
+	\small
+	\caption{Результаты}
+	\label{tab:results}
+	\csvreader[
+	  tabular=|c|c|c|c|c|c|c|c|c|c|c|c|,
+	  table head=\hline
+	  $t \backslash x$ & 0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 & 0.6 & 0.7 & 0.8 & 0.9 & 1 \\\hline,
+	  late after line=\\,
+	  late after last line=\\\hline,
+	  head to column names,
+	  respect all
+	]{outputs/output_0.1.csv}{}{
+	  \csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix & \csvcolx & \csvcolxi & \csvcolxii
+	}
+	\end{table}
+
 \end{document}
