@@ -24,9 +24,11 @@ int main() {
 
 		int n = 0;
 		while (!(n == (N_t[i] - 1))) {
-			u[n + 1][N_x - 1] = std::pow(Constants::delta_t[i], 2);
-			for (int j = N_x - 2; j <= 0; j--)
+			u[n + 1][N_x - 1] = std::pow((n + 1) * Constants::delta_t[i], 2) + (n + 1) * Constants::delta_t[i];
+			for (int j = N_x - 2; j >= 0; j--)
 				u[n + 1][j] = (u[n][j] + 2 * (Constants::delta_t[i]) / Constants::h * u[n + 1][j + 1] + Constants::delta_t[i] * (j * Constants::h)) / (1 + 2 * Constants::delta_t[i] / Constants::h);	
+		// for (int j = 0; j <= N_x - 2; j++)
+		// 	u[n + 1][j] = u[n][j] + 2 * Constants::delta_t[i] / Constants::h * (u[n][j + 1] - u[n][j]) + Constants::delta_t[i] * (j * Constants::h);
 			n++;
 		}
 
