@@ -154,11 +154,8 @@
 	\begin{equation}\label{eq:value2}
 		u_{j+1}^{n+1} = u_{j}^{n} + \left.\frac{\partial u}{\partial x}\right|_{j}^{n}h + \left.\frac{\partial u}{\partial t}\right|_{j}^{n}\Delta t + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h^{2} + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}(\Delta t)^{2} + \dots,
 	\end{equation}
-	\begin{equation}\label{eq:value3}
-		u_{j}^{n+1} = u_{j}^{n} + \left.\frac{\partial u}{\partial t}\right|_{j}^{n}\Delta t + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}(\Delta t)^{2} + \dots,
-	\end{equation}
 	\par
-	Подставляя зависимости \eqref{eq:value1}-\eqref{eq:value3} в разностную схему \eqref{eq:implicit}, получаю:
+	Подставляя зависимости \eqref{eq:value1}-\eqref{eq:value2} в разностную схему \eqref{eq:implicit}, получаю:
 	\begin{equation*}
 		\left.\frac{\partial u}{\partial t}\right|_{j}^{n} + \left.\frac{1}{2}\frac{\partial^{2} u}{\partial t^{2}}\right|_{j}^{n}\Delta t + \left.\frac{1}{6}\frac{\partial^{3} u}{\partial t^{3}}\right|_{j}^{n}(\Delta t)^{2} = \left.\frac{\partial u}{\partial x}\right|_{j}^{n} + \left.\frac{1}{2!}\frac{\partial^{2} u}{\partial x^{2}}\right|_{j}^{n}h + \left.\frac{1}{3!}\frac{\partial^{3} u}{\partial x^{3}}\right|_{j}^{n}h^{2}
 	\end{equation*}
