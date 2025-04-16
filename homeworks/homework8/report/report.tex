@@ -1,0 +1,100 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+\usepackage{makecell}
+
+\usepackage{amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.text}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large \textbf{Министерство науки и высшего образования Российской Федерации} \\
+			\large \textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования} \\
+			\large \textbf{«Российский химико-технологический университет имени Д.И. Менделеева»} \\
+
+			\vspace*{4cm}
+			\LARGE \textbf{ОТЧЕТ ПО ДОМАШНЕЙ РАБОТЕ №8}
+
+			\vspace*{4cm}
+			\begin{flushright}
+				\Large
+				\begin{tabular}{>{\raggedleft\arraybackslash}p{9cm} p{10cm}}
+					Выполнил студент группы КС-36: & Золотухин Андрей Александрович \\
+					Ссылка на репозиторий: & https://github.com/ \\
+					& CorgiPuppy/ \\
+					& num-methods-eq-math-phys-chem-labs \\
+					Приняла: & Кольцова Элеонора Моисеевна \\
+					Дата сдачи: & 14.04.2025 \\
+				\end{tabular}
+			\end{flushright}
+
+			\vspace*{6cm}
+			\Large \textbf{Москва \\ 2025}
+		\end{center}
+	\end{titlepage}
+
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section*{Описание задачи}
+	\addcontentsline{toc}{section}{Описание задачи}
+	\large
+	\begin{center}
+		\begin{tabular}{||c|c|c||}
+			\hline
+			Уравнение & Интервалы переменных & Начальные и граничные условия \\
+
+			\hline
+			$ \frac{\partial u}{\partial t} = \frac{\partial^{2} u}{\partial x^{2}} + t^{2} + x^{2} + y^{2} $ & \makecell{$ x \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = x^{2} + y^{2} $ \\ $\begin{cases} \frac{\partial u}{\partial x}(t, x = 0, y) = 0 \\ \frac{\partial u}{\partial x}(t, x = 1, y) = 2 \end{cases}$ \\ $\begin{cases} \frac{\partial u}{\partial y}(t, x, y = 0) = 8 \\ \frac{\partial u}{\partial y}(t, x, y = 1) = 2 \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\item записать явную разностную схему;
+		\item проверить условие устойчивости разностной схемы;
+		\item вывести рекуррентное соотношение;
+		\item составить алгоритм (блок-схему) расчёта.
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Выполнение задачи}
+	\addcontentsline{toc}{section}{Выполнение задачи}
+
+	\subsection*{Задание 1}
+	\addcontentsline{toc}{subsection}{Задание 1}
+	\large
+	Записать явную разностную схему:
+\end{document}
