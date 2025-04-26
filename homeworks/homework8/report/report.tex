@@ -71,10 +71,10 @@
 	\begin{center}
 		\begin{tabular}{||c|c|c||}
 			\hline
-			Уравнение & Интервалы переменных & Начальные и граничные условия \\
+			Уравнение & \makecell{Интервалы \\ переменных} & Начальные и граничные условия \\
 
 			\hline
-			$ \frac{\partial u}{\partial t} = \frac{\partial^{2} u}{\partial x^{2}} + t^{2} + x^{2} + y^{2} $ & \makecell{$ x \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = x^{2} + y^{2} $ \\ $\begin{cases} \frac{\partial u}{\partial x}(t, x = 0, y) = 0 \\ \frac{\partial u}{\partial x}(t, x = 1, y) = 2 \end{cases}$ \\ $\begin{cases} \frac{\partial u}{\partial y}(t, x, y = 0) = 8 \\ \frac{\partial u}{\partial y}(t, x, y = 1) = 2 \end{cases}$} \\
+			$ \frac{\partial u}{\partial t} = \frac{\partial^{2} u}{\partial x^{2}} + \frac{\partial^{2} u}{\partial y^{2}} + t^{2} + x^{2} + y^{2} $ & \makecell{$ x \in [0, 1] $ \\ $ y \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = x^{2} + y^{2} $ \\ $\begin{cases} \frac{\partial u}{\partial x}(t, x = 0, y) = 0 \\ \frac{\partial u}{\partial x}(t, x = 1, y) = 2 \end{cases}$ \\ $\begin{cases} \frac{\partial u}{\partial y}(t, x, y = 0) = 8 \\ \frac{\partial u}{\partial y}(t, x, y = 1) = 2 \end{cases}$} \\
 
 			\hline
 		\end{tabular}
