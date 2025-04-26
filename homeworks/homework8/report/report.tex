@@ -131,7 +131,7 @@
 			\node (dec) [decision, below of=in2, yshift=-1cm] {$n = N_{t}$};
 			\node (stop) [stop, right of=dec, xshift=2cm] {};
 			\node (pr1) [process, below of=dec, yshift=-1cm] {\makecell{цикл по $i=2..N_{x}-1$; цикл по $j=2..N_{y}-1$ \\ $u_{i, j}^{n+1} = u_{i, j}^{n} + \frac{\Delta t}{h_{x}^{2}}(u_{i+1, j}^{n} - 2u_{i, j}^{n} + u_{i-1, j}^{n}) + \frac{\Delta t}{h_{y}^{2}}(u_{i, j+1}^{n} - 2u_{i, j}^{n} + u_{i, j-1}^{n}) + \Delta t((n \Delta t)^{2} + ((i - 1)h_{x})^{2} + ((j - 1)h_{y})^{2})$ }};
-			\node (pr2) [process, below of=pr1, yshift=-1cm] {\makecell{Определение $u_{1, j}^{n+1}$, $u_{N_{x}, j}^{n+1}$, $u_{i, 1}^{n+1}$ и $u_{i, N_{y}}^{n+1}$ из граничных условий: \\ цикл по $j=1..N_{y}$: $\begin{cases} u_{1, j}^{n+1} = 0 \\ u_{N_{x}, j} = 2 \end{cases}$ \\ цикл по $i=1..N_{x}$: $\begin{cases} u_{j, 1}^{n+1} = 8 \\ u_{j, N_{y}} = 2 \end{cases}$}};
+			\node (pr2) [process, below of=pr1, yshift=-1cm] {\makecell{Определение $u_{1, j}^{n+1}$, $u_{N_{x}, j}^{n+1}$, $u_{i, 1}^{n+1}$ и $u_{i, N_{y}}^{n+1}$ из граничных условий: \\ цикл по $j=1..N_{y}$: $\begin{cases} u_{1, j}^{n+1} = u_{2, j}^{n+1} \\ u_{N_{x}, j}^{n+1} = u_{N_{x}-1, j}^{n+1} + 2h_{x} \end{cases}$ \\ цикл по $i=1..N_{x}$: $\begin{cases} u_{i, 1}^{n+1} = u_{i, 2}^{n+1} - 8h_{y} \\ u_{i, N_{y}}^{n+1} = u_{i, N_{y}-1}^{n+1} + 2h_{y} \end{cases}$}};
 			\node (pr3) [process, below of=pr2, yshift=-1cm] {$n = n + 1$};
 			\draw [arrow] (start) -- (in1);
 			\draw [arrow] (in1) -- (in2);
