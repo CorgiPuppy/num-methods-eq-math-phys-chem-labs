@@ -238,7 +238,7 @@
 			\node (pr1) [process, below of=dec, yshift=-1cm] {
 				\makecell{
 					цикл по $j=2..N_{y}-1$ \\
-					1) $\alpha_{1} = 0$, $\beta_{1} = (n+1)\Delta t + (j-1)h_{y}$; \\
+					1) $\alpha_{1} = 0$, $\beta_{1} = (n+\frac{1}{2})\Delta t + (j-1)h_{y}$; \\
 					2) цикл по $i=2..N_{x}-1$: расчёт $a_{i}$, $b_{i}$, $c_{i}$, $\xi_{i, j}^{n}$; $\alpha_{i}$, $\beta_{i}$; \\
 					3) $u_{N_{x}, j}^{n+\frac{1}{2}} = 2((n+\frac{1}{2})\Delta t) + (j-1)h_{y} + 1$; \\
 					4) цикл по $i=N_{x}-1..1$: $u_{i, j}^{n+\frac{1}{2}} = \alpha_{i}u_{i+1, j}^{n+\frac{1}{2}} + \beta_{i}$.
