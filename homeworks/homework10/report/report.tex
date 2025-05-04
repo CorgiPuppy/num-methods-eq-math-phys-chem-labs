@@ -535,7 +535,7 @@
 	\par
 	Результатом последовательного решения подсхем \eqref{eq:firstPredictor}, \eqref{eq:secondPredictor}, называемых в совокупности \textbf{предиктором}, являются значения функции \textit{u(t, x, y)} на шаге по времени $(n+\frac{1}{2})$. Для завершения расчётов на всём интервале $\Delta t$ используется поправочное разностное соотношение, называемое \textbf{корректором}:
 	\small
-	\begin{equation}\label{corrector}
+	\begin{equation}\label{eq:corrector}
 		\frac{u_{i, j}^{n+1} - u_{i, j}^{n}}{\Delta t} = 16\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + 12\frac{u_{i, j+1}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}^{2}} + (n+\frac{1}{2})\Delta t(i-1)h_{x}e^{(j-1)h_{y}}.
 	\end{equation}
 	\par
