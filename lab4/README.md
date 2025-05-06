@@ -12,7 +12,7 @@
         <td style="text-align:center; vertical-align:middle">9</td>
         <td style="text-align:center; vertical-align:middle">$$\frac{du}{dx} = \frac{d^{2}u}{dx^{2}} + 4$$</td>
 		<td style="text-align:center; vertical-align:middle">Установление со <br> схемой Кранка- <br> Николсона</td>
-		<td style="text-align:center; vertical-align:middle">$$\begin{cases} u(t, x = 0) = 1 \\ u(t, x = 1) = 6,7 \end{cases}$$</td>
+		<td style="text-align:center; vertical-align:middle">$$u(t, x = 0) = 1$$ <br> $$u(t, x = 1) = 6,7$$</td>
     </tr>
 </table>
 
