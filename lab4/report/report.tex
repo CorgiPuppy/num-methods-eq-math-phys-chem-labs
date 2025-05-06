@@ -1,0 +1,293 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+\usepackage{makecell}
+
+\usepackage{amsmath}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.text}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\normalsize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\usepackage{graphicx}
+\graphicspath{ {plots/pictures/} }
+
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{caption}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large \textbf{Министерство науки и высшего образования Российской Федерации} \\
+			\large \textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования} \\
+			\large \textbf{«Российский химико-технологический университет имени Д.И. Менделеева»} \\
+
+			\vspace*{4cm}
+			\LARGE \textbf{ОТЧЕТ ПО ЛАБОРАТОРНОЙ РАБОТЕ №4}
+
+			\vspace*{1cm}
+			\LARGE \textbf{Вариант 9}
+
+			\vspace*{4cm}
+			\begin{flushright}
+				\Large
+				\begin{tabular}{>{\raggedleft\arraybackslash}p{9cm} p{10cm}}
+					Выполнил студент группы КС-36: & Золотухин Андрей Александрович \\
+					Ссылка на репозиторий: & https://github.com/ \\
+					& CorgiPuppy/ \\
+					& num-methods-eq-math-phys-chem-labs \\
+					Принял: & Лебедев Данила Александрович \\
+					Дата сдачи: & 07.05.2025 \\
+				\end{tabular}
+			\end{flushright}
+
+			\vspace*{4cm}
+			\Large \textbf{Москва \\ 2025}
+		\end{center}
+	\end{titlepage}
+
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section*{Описание задачи}
+	\addcontentsline{toc}{section}{Описание задачи}
+	\large
+	\begin{center}
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Вариант & Уравнение & Метод & Граничные условия \\
+			\hline
+			9 & $ \frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+4$ & \makecell{Установление со \\ схемой Кранка- \\ Николсона} & \makecell{$ \begin{cases} u(t, x = 0) = 1 \\ u(t, x = 1) = 6.7 \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\item представить задачу в нестационарном виде;
+		\item записать разностную схему Кранка-Николсона;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item построить программу на любом удобном языке программирования;
+		\item построить численный расчёт с использованием различных значений $\Delta t$ \textit{= \{0.1;} \textit{0.01;} \textit{0.001\}}, \textit{h = \{0.1; 0.01\}};
+		\item Сравнить результаты вычислений между собой в точках: \textit{x = \{0;} \textit{0.1;} \textit{0.2;} \textit{0.3;} \textit{0.4;} \textit{0.5;} \textit{0.6;} \textit{0.7;} \textit{0.8;} \textit{0.9;} \textit{1\}}.
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Выполнение задачи}
+	\addcontentsline{toc}{section}{Выполнение задачи}
+
+	\subsection*{Задание 1}
+	\addcontentsline{toc}{subsection}{Задание 1}
+	\large
+	Представить задачу в нестационарном виде: \par
+	Представлю стационарную задачу в нестационарном виду. Для этого в уравнение необходимо добавить фиктивную производную по времени:
+	\begin{equation}\label{eq:nonstationary}
+		\frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+4 \rightarrow \frac{\partial \tilde{u}}{\partial \tau}+\frac{\partial \tilde{u}}{\partial x}=\frac{\partial^{2} \tilde{u}}{\partial x^{2}}+4.
+	\end{equation}
+	\par
+	При этом искомая функция станет уже функцией двух переменных:
+	\begin{equation*}
+		u(x) \rightarrow \tilde{u}(x,\tau).
+	\end{equation*}
+	
+	\subsection*{Задание 2}
+	\addcontentsline{toc}{subsection}{Задание 2}
+	\large
+	Записать разностную схему Кранка-Николсона для уравнения \eqref{eq:nonstationary}:
+	\normalsize
+	\begin{equation}\label{eq:crankNicholson}
+		\frac{u_{j}^{n+1} - u_{j}^{n}}{\Delta t} + \frac{1}{2}\frac{u_{j}^{n+1} - u_{j-1}^{n+1}}{h} + \frac{1}{2}\frac{u_{j}^{n} - u_{j-1}^{n}}{h} = \frac{1}{2}\frac{u_{j+1}^{n+1} - u_{j}^{n+1} + u_{j-1}^{n+1}}{h^{2}} + \frac{1}{2}\frac{u_{j+1}^{n} - u_{j}^{n} + u_{j-1}^{n}}{h^{2}} + 4.
+	\end{equation}
+
+	\subsection*{Задание 3}
+	\addcontentsline{toc}{subsection}{Задание 3}
+	\large
+	Привести схему к виду, удобному для использования метода прогонки:
+	\small
+	\begin{equation*}
+		-\frac{1}{2}\frac{\Delta t}{h^{2}}u_{j+1}^{n+1} + (1+\frac{1}{2}\frac{\Delta t}{h} + \frac{\Delta t}{h^{2}})u_{j}^{n+1} - (\frac{1}{2}\frac{\Delta t}{h} + \frac{1}{2}\frac{\Delta t}{h^{2}})u_{j-1}^{n+1} = u_{j}^{n} + \frac{1}{2}\frac{\Delta t}{h^{2}}(u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}) - \frac{1}{2}\frac{\Delta t}{h}(u_{j}^{n}-u_{j-1}^{n}) + \Delta t 4.
+	\end{equation*}
+	\large
+	\par
+	Введу следующие обозначения:
+	\begin{equation*}
+		\makecell{
+			a_{j}=-\frac{1}{2}\frac{\Delta t}{h^{2}}, \> b_{j}=1+\frac{1}{2}\frac{\Delta t}{h} + \frac{\Delta t}{h^{2}}, \> c_{j}=-(\frac{1}{2}\frac{\Delta t}{h} + \frac{1}{2}\frac{\Delta t}{h^{2}}), \\
+			\xi_{j}^{n}=u_{j}^{n} + \frac{1}{2}\frac{\Delta t}{h^{2}}(u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}) - \frac{1}{2}\frac{\Delta t}{h}(u_{j}^{n}-u_{j-1}^{n}) + \Delta t 4.
+		}
+	\end{equation*}
+	\par
+	С учётом обозначений равенство будет иметь вид:
+	\begin{equation*}
+		\alpha_{j}u_{j+1}^{n+1} + b_{j}u_{j}^{n+1} + c_{j}u_{j-1}^{n+1} = \xi_{j}^{n}.
+	\end{equation*}
+	\par
+	Данное преобразование называется \textit{преобразованием} \textit{неявной} \textit{схемы к виду}, \textit{удобному для} \textit{использования метода прогонки}.
+
+	\subsection*{Задание 4}
+	\addcontentsline{toc}{subsection}{Задание 4}
+	\large
+	Проверить сходимость прогонки: \par
+	Легко видеть, что для разностной схемы \eqref{eq:crankNicholson} достаточное условие сходимости прогонки выполняется:
+	
+	\subsection*{Задание 5}
+	\addcontentsline{toc}{subsection}{Задание 5}
+	\large
+	Найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$: \par
+	Для реализации разностной схемы Кранка-Николсона требуется ввести некоторое дополнительное условие, связывающее значения функции \textit{u(t, x)} на \textit{(n+1)}-м шаге по времени. Представлю это дополнительное условие в виде линейной зависимости
+	\begin{equation}\label{eq:recurrent}
+		u_{j}^{n+1} = \alpha_{j} u_{j+1}^{n+1} + \beta{j},
+	\end{equation}
+	справедливой для любого из значений $j=1..N-1$. \par
+	Соотношение \eqref{eq:recurrent} называют \textbf{рекуррентным прогоночным соотношением}, а коэффициенты $\alpha_{j}$, $\beta_{j}$ - \textbf{прогоночными коэффициентами}. \\
+	\par
+	Для определения прогоночных коэффициентов на \textit{1}-м шаге по координате \textit{x}, использую рекуррентное прогоночное соотношение \eqref{eq:recurrent}, записанное для $j=1$:
+	\begin{equation*}
+		u_{1}^{n+1} = \alpha_{1} u_{2}^{n+1} + \beta_{1}
+	\end{equation*}
+	и левое граничное условие:
+	\begin{equation*}
+		u_{1}^{n+1} = 1.
+	\end{equation*}
+	\par
+	Сравнивая эти два соотношения, получаю:
+	\begin{equation*}
+		\alpha_{1} = 0, \beta_{1} = 1.
+	\end{equation*}
+	\par
+	Значение фуннкции \textit{u(t, x)} на \textit{(n+1)}-м шаге по времени в крайней правой точке, которое можно определить из правого граничного условия:
+	\begin{equation*}
+		u_{N}^{n+1} = 6.7.
+	\end{equation*}
+	
+	\subsection*{Задание 6}
+	\addcontentsline{toc}{subsection}{Задание 6}
+	\large
+	Записать рекуррентное прогоночное соотношение: \par
+	Соотношение \eqref{eq:recurrent} является \textbf{рекуррентным прогоночным соотношением}.
+	
+	\subsection*{Задание 7}
+	\addcontentsline{toc}{subsection}{Задание 7}
+	\large
+	Составить алгоритм (блок-схему) расчёта:
+	\tikzstyle{start} = [circle, draw=black!60, fill=white!5, very thick, minimum size=13mm]
+	\tikzstyle{stop} = [circle, draw=black!60, fill=white!60, very thick, minimum size=13mm]
+	\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{arrow} = [thick,->,>=stealth]
+	\begin{center}
+		\begin{tikzpicture}[node distance=2cm]
+			\node (start) [start] {Start};
+			\node (in1) [process, below of=start, yshift=-1cm] {
+				\makecell{
+					Задание начальных условий: \\
+					цикл по $j=1..N$:\\ 
+					$u_{j}^{0} = 4$
+				}
+			};
+			\node (in2) [process, below of=in1] {
+				$n = 0$
+			};
+			\node (pr1) [process, below of=in2, yshift=-0.5cm] {
+				\makecell{
+					Определение $\alpha_{1}$, $\beta_{1}$ из левого граничного условия \\
+					$\alpha_{1} = 0$ \\
+					$\beta_{1} = 4$
+				}
+			};
+			\node (pr2) [process, below of=pr1, yshift=-1cm] {
+				\makecell{
+					цикл по $j=2..N-1$: \\
+					расчёт $a_{j}$, $b_{j}$, $c_{j}$, $\xi_{j}^{n}$; $\alpha_{j}=-\frac{\alpha{j}}{b_{j}+c_{j}\alpha_{j-1}}$, $\beta_{j}=\frac{\xi_{j}^{n}-c_{j}\beta{j-1}}{b_{j}+c_{j}\alpha_{j-1}}$
+				}
+			};
+			\node (pr3) [process, below of=pr2, yshift=-0.5cm] {
+				\makecell{
+					Определение $u_{N}^{n+1}$ из правого граничного условия \\
+					$u_{N}^{n+1} = 6.7$
+				}
+			};
+			\node (pr4) [process, below of=pr3, yshift=-0.5cm] {
+				\makecell{
+					цикл по $j=N-1..1$: \\
+					$u_{j}^{n+1} = \alpha_{j}u_{j+1}^{n+1} + \beta_{j}$
+				}
+			};
+			\node (dec) [decision, below of=pr4, yshift=-2cm] {
+				$\lvert \lvert u^{n+1} - u^{n} \rvert \rvert \le \epsilon$
+			};
+			\node (stop) [stop, right of=dec, xshift=2cm] {End};
+			\node (pr5) [process, below of=dec, yshift=-2cm] {
+				$n = n + 1$
+			};
+			\draw [arrow] (start) -- (in1);
+			\draw [arrow] (in1) -- (in2);
+			\draw [arrow] (in2) -- (pr1);
+			\draw [arrow] (pr1) -- (pr2);
+			\draw [arrow] (pr2) -- (pr3);
+			\draw [arrow] (pr3) -- (pr4);
+			\draw [arrow] (pr4) -- (dec);
+			\draw [arrow] (dec) -- node[anchor=west] {нет} (pr5);
+			\draw [arrow] (dec) -- node[anchor=south] {да} (stop);
+			\draw [arrow] (pr5.west) -- ++(left:8.2cm) -| +(up:16cm) -- (pr1.west);
+		\end{tikzpicture}
+	\end{center}
+\end{document}
