@@ -1,0 +1,175 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+\usepackage{makecell}
+
+\usepackage{amsmath}
+
+\def\H{\rule{0pt}{1.5ex}H}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.text}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large \textbf{Министерство науки и высшего образования Российской Федерации} \\
+			\large \textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования} \\
+			\large \textbf{«Российский химико-технологический университет имени Д.И. Менделеева»} \\
+
+			\vspace*{4cm}
+			\LARGE \textbf{ОТЧЕТ ПО ДОМАШНЕЙ РАБОТЕ №12}
+
+			\vspace*{4cm}
+			\begin{flushright}
+				\Large
+				\begin{tabular}{>{\raggedleft\arraybackslash}p{9cm} p{10cm}}
+					Выполнил студент группы КС-36: & Золотухин Андрей Александрович \\
+					Ссылка на репозиторий: & https://github.com/ \\
+					& CorgiPuppy/ \\
+					& num-methods-eq-math-phys-chem-labs \\
+					Приняла: & Кольцова Элеонора Моисеевна \\
+					Дата сдачи: & 12.05.2025 \\
+				\end{tabular}
+			\end{flushright}
+
+			\vspace*{6cm}
+			\Large \textbf{Москва \\ 2025}
+		\end{center}
+	\end{titlepage}
+
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section*{Описание задачи}
+	\addcontentsline{toc}{section}{Описание задачи}
+	\large
+	\begin{center}
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Уравнение & Интервал переменной & Метод & Граничные условия \\
+
+			\hline
+			$ \frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+x$ & $x \in [0, 1]$ & \makecell{Установление с \\ явной схемой; \\ Установление с \\ неявной схемой; \\ Установление со \\ схемой Кранка- \\ Николсона} & \makecell{$ \begin{cases} u(t, x = 0) = 0 \\ \frac{du}{dx}(t, x = 1) = 1 \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\item представить задачу в нестационарном виде;
+		\item записать явную разностную схему;
+		\item вывести рекуррентное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item записать неявную разностную схему;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item записать разностную схему Кранка-Николсона;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+	\end{enumerate}
+
+	\begin{center}
+		\begin{tabular}{||c|c|c|c||}
+			\hline
+			Уравнение & Интервал переменной & Метод & Граничные условия \\
+
+			\hline
+			$ -\frac{du}{dx}=4\frac{d^{2}u}{dx^{2}}+2x$ & $x \in [0, 1]$ & \makecell{Установление с \\ явной схемой; \\ Установление со \\ схемой Кранка- \\ Николсона} & \makecell{$ \begin{cases} \frac{du}{dx}(t, x = 0) = 2 \\ u(t, x = 1) = 2 \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\setcounter{enumi}{16}
+		\item представить задачу в нестационарном виде;
+		\item записать явную разностную схему;
+		\item вывести рекуррентное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item записать неявную разностную схему;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+		\item записать разностную схему Кранка-Николсона;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$, $u_{N}^{n+1}$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+	\end{enumerate}
+
+	\newpage
+
+	\section*{Выполнение задачи}
+	\addcontentsline{toc}{section}{Выполнение задачи}
+
+	\subsection*{Задание 1}
+	\addcontentsline{toc}{subsection}{Задание 1}
+	\large
+	Представить задачу в нестационарном виде: \par
+	Представлю стационарную задачу в нестационарном виду. Для этого в уравнение необходимо добавить фиктивную производную по времени:
+	\begin{equation}\label{eq:nonstationary}
+		\frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+x \rightarrow \frac{\partial \tilde{u}}{\partial \tau}+\frac{\partial \tilde{u}}{\partial x}=\frac{\partial^{2} \tilde{u}}{\partial x^{2}}+x.
+	\end{equation}
+	\par
+	При этом искомая функция станет уже функцией двух переменных:
+	\begin{equation*}
+		u(x) \rightarrow \tilde{u}(x,\tau).
+	\end{equation*}
+	
+	\subsection*{Задание 2}
+	\addcontentsline{toc}{subsection}{Задание 2}
+	\large
+	Записать явную разностную схему для уравнения \eqref{eq:nonstationary}:
+	\normalsize
+	\begin{equation}\label{eq:explicit}
+		\frac{u_{j}^{n+1} - u_{j}^{n}}{\Delta t} + \frac{u_{j}^{n} - u_{j-1}^{n}}{h} = \frac{u_{j+1}^{n} - u_{j}^{n} + u_{j-1}^{n}}{h^{2}} + (i-1)h.
+	\end{equation}
+
+	\subsection*{Задание 3}
+	\addcontentsline{toc}{subsection}{Задание 3}
+	\large
+	Вывести рекуррентное соотношение для уравнения \eqref{eq:explicit}: \par
+	Выражая из разностной схемы \eqref{eq:explicit} величину $u_{j}^{n+1}$, получаю рекуррентное соотношение
+	\begin{equation*}
+		u_{j}^{n+1} = u_{j}^{n} + \Delta t[\frac{1}{h}
+	\end{equation*}
+
+\end{document}
