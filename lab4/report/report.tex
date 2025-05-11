@@ -109,7 +109,7 @@
 			\hline
 			Вариант & Уравнение & Метод & Граничные условия \\
 			\hline
-			9 & $ \frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+4$ & \makecell{Установление со \\ схемой Кранка- \\ Николсона} & \makecell{$ \begin{cases} u(t, x = 0) = 1 \\ u(t, x = 1) = 6.7 \end{cases}$} \\
+			9 & $ \frac{du}{dx}=\frac{d^{2}u}{dx^{2}}+4$ & \makecell{Установление со \\ схемой Кранка- \\ Николсона} & \makecell{$ \begin{cases} u(x = 0) = 1 \\ u(x = 1) = 6.7 \end{cases}$} \\
 
 			\hline
 		\end{tabular}
@@ -180,14 +180,17 @@
 		\alpha_{j}u_{j+1}^{n+1} + b_{j}u_{j}^{n+1} + c_{j}u_{j-1}^{n+1} = \xi_{j}^{n}.
 	\end{equation*}
 	\par
-	Данное преобразование называется \textit{преобразованием} \textit{неявной} \textit{схемы к виду}, \textit{удобному для} \textit{использования метода прогонки}.
+	Данное преобразование называется \textit{преобразованием} \textit{схемы Кранка-Николсона} \textit{к виду}, \textit{удобному для} \textit{использования метода прогонки}.
 
 	\subsection*{Задание 4}
 	\addcontentsline{toc}{subsection}{Задание 4}
 	\large
 	Проверить сходимость прогонки: \par
 	Легко видеть, что для разностной схемы \eqref{eq:crankNicholson} достаточное условие сходимости прогонки выполняется:
-	
+	\begin{equation*}
+		\lvert a_{j} \rvert + \lvert c_{j} \rvert = \frac{1}{2}\frac{\Delta t}{h} + \frac{\Delta t}{h^{2}} < 1 + \frac{1}{2}\frac{\Delta t}{h} + \frac{\Delta t}{h^{2}} = \lvert b_{j} \rvert.
+	\end{equation*}
+
 	\subsection*{Задание 5}
 	\addcontentsline{toc}{subsection}{Задание 5}
 	\large
@@ -213,7 +216,7 @@
 		\alpha_{1} = 0, \beta_{1} = 1.
 	\end{equation*}
 	\par
-	Значение фуннкции \textit{u(t, x)} на \textit{(n+1)}-м шаге по времени в крайней правой точке, которое можно определить из правого граничного условия:
+	Значение функции \textit{u(t, x)} на \textit{(n+1)}-м шаге по времени в крайней правой точке, которое можно определить из правого граничного условия:
 	\begin{equation*}
 		u_{N}^{n+1} = 6.7.
 	\end{equation*}
