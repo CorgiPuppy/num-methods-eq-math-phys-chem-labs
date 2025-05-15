@@ -92,10 +92,10 @@ public class Main {
 
 				System.out.println("x\tu(x)");
 				for (double x : xPoints) {
-				int j = (int)(x / h[index_h]);
-				if (j >= N) j = N-1;
-				System.out.printf("%f\t%f\t%.1f\t%.6f\n", delta_t[index_delta_t], h[index_h], x, u[1][j]);
-                }
+					int j = (int)(x / h[index_h]);
+					if (j >= N) j = N-1;
+					System.out.printf("%f\t%f\t%.1f\t%.6f\n", delta_t[index_delta_t], h[index_h], x, u[1][j]);
+				}
 			}
 		}
     }
