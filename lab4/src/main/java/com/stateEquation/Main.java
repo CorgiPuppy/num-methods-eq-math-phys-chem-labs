@@ -65,7 +65,7 @@ public class Main {
 					beta[0] = 1.0;
 
 					for (int j = 1; j <= N - 2; j++) {
-						double xi = u[0][j] + 0.5 * delta_t[index_delta_t] / (h[index_h] * h[index_h]) * (u[0][j + 1] - 2.0 * u[0][j] + u[0][j - 1]);
+						double xi = u[0][j] + 0.5 * delta_t[index_delta_t] / (h[index_h] * h[index_h]) * (u[0][j + 1] - 2.0 * u[0][j] + u[0][j - 1]) - 0.5 * delta_t[index_delta_t] / h[index_h] * (u[0][j] - u[0][j - 1]) + delta_t[index_delta_t] * 4;
 						alpha[j] = - a / (b + c * alpha[j - 1]);
 						beta[j] = (xi - c * beta[j - 1]) / (b + c * alpha[j - 1]);
 					}
@@ -92,7 +92,7 @@ public class Main {
 
 				System.out.println("x\tu(x)");
 				for (double x : xPoints) {
-					int j = (int)(x / h[index_h]);
+					int j = (int) Math.round(x / h[index_h]);
 					if (j >= N) j = N-1;
 					System.out.printf("%f\t%f\t%.1f\t%.6f\n", delta_t[index_delta_t], h[index_h], x, u[1][j]);
 				}
