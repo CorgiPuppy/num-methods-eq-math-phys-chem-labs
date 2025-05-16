@@ -90,7 +90,7 @@ public class Main {
 					}
 				}
 
-				System.out.println("x\tu(x)");
+				System.out.println("dt\t\th\t\tx\tu(x)");
 				for (double x : xPoints) {
 					int j = (int) Math.round(x / h[index_h]);
 					if (j >= N) j = N-1;
