@@ -1,0 +1,687 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[top=1cm, left=1cm, right=1cm]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{array}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+\usepackage{sectsty}
+\allsectionsfont{\centering}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+\usepackage{makecell}
+
+\usepackage{amsmath}
+
+\def\H{\rule{0pt}{1.5ex}H}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{decorations.text}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\large \textbf{Министерство науки и высшего образования Российской Федерации} \\
+			\large \textbf{Федеральное государственное бюджетное образовательное учреждение высшего образования} \\
+			\large \textbf{«Российский химико-технологический университет имени Д.И. Менделеева»} \\
+
+			\vspace*{4cm}
+			\LARGE \textbf{ОТЧЕТ ПО ДОМАШНЕЙ РАБОТЕ №13}
+
+			\vspace*{4cm}
+			\begin{flushright}
+				\Large
+				\begin{tabular}{>{\raggedleft\arraybackslash}p{9cm} p{10cm}}
+					Выполнил студент группы КС-36: & Золотухин Андрей Александрович \\
+					Ссылка на репозиторий: & https://github.com/ \\
+					& CorgiPuppy/ \\
+					& num-methods-eq-math-phys-chem-labs \\
+					Приняла: & Кольцова Элеонора Моисеевна \\
+					Дата сдачи: & 19.05.2025 \\
+				\end{tabular}
+			\end{flushright}
+
+			\vspace*{6cm}
+			\Large \textbf{Москва \\ 2025}
+		\end{center}
+	\end{titlepage}
+
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
+
+	\pagenumbering{arabic}
+
+	\section*{Описание задачи}
+	\addcontentsline{toc}{section}{Описание задачи}
+	\large
+	\begin{center}
+		\begin{tabular}{||c|c|c||}
+			\hline
+			Уравнение & \makecell{Интервалы \\ переменных} & Начальные и граничные условия \\
+
+			\hline
+			\small 
+			$ \frac{\partial u}{\partial t} = 0,2\frac{\partial^{2} u}{\partial x^{2}} + 0,5\frac{\partial^{2} u}{\partial y^{2}} - 5tu $ & \makecell{$ x \in [0, 1] $ \\ $ y \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = 0 $ \\ $\begin{cases} \frac{\partial u}{\partial x}(t, x = 0, y) = ty \\ \frac{\partial u}{\partial x}(t, x = 1, y) = 5ty \end{cases}$ \\ $\begin{cases} u(t, x, y = 0) = tx \\ u(t, x, y = 1) = 2tx \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+
+	Для заданного уравнения:
+	\begin{enumerate}
+		\item записать неявную разностную схему;
+		\item записать схему переменных направлений;
+		\item привести схемы к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта.
+	\end{enumerate}
+
+	\begin{center}
+		\begin{tabular}{||c|c|c||}
+			\hline
+			Уравнение & \makecell{Интервалы \\ переменных} & Начальные и граничные условия \\
+
+			\hline
+			$ \frac{\partial u}{\partial t} = 2\frac{\partial u}{\partial x} - 0,05\frac{\partial u}{\partial y} $ & \makecell{$ x \in [0, 1] $ \\ $ y \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = e^{x} $ \\ $ u(t, x = 1, y) = t $ \\ $ u(t, x, y = 0) = 0 $} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\setcounter{enumi}{6}
+		\item записать неявную разностную схему;
+		\item записать схему расщепления;
+		\item вывести рекуррентное соотношение;
+		\item составить алгоритм (блок-схему) расчёта.
+	\end{enumerate}
+	
+	\begin{center}
+		\begin{tabular}{||c|c|c||}
+			\hline
+			Уравнение & \makecell{Интервалы \\ переменных} & Начальные и граничные условия \\
+
+			\hline
+			\small 
+			$ \frac{du}{dx} + 0,3\frac{d^{2} u}{dx^{2}} = 3x^{2} $ & $ x \in [0, 1] $ & \makecell{$\begin{cases} \frac{du}{dx}(x = 0) = 0 \\ \frac{du}{dx}(x = 1) = 1 \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+	\par
+	Для заданного уравнения:
+	\begin{enumerate}
+		\setcounter{enumi}{10}
+		\item представить задачу в нестационарном виде;
+		\item записать разностную схему Кранка-Николсона;
+		\item привести схему к виду, удобному для использования метода прогонки;
+		\item проверить сходимость прогонки;
+		\item найти $\alpha_1$, $\beta_1$;
+		\item записать рекуррентное прогоночное соотношение;
+		\item составить алгоритм (блок-схему) расчёта;
+	\end{enumerate}
+
+	\begin{center}
+		\begin{tabular}{||c|c|c||}
+			\hline
+			Уравнение & \makecell{Интервалы \\ переменных} & Начальные и граничные условия \\
+
+			\hline
+			\small 
+			$ \frac{\partial u}{\partial t} + 8\frac{\partial u}{\partial y} = 7ty\frac{\partial^{2} u}{\partial x^{2}} + 5t\frac{\partial^{2} u}{\partial y^{2}} - 3u^{2} $ & \makecell{$ x \in [0, 1] $ \\ $ y \in [0, 1] $ \\ $ t \in [0, 1] $} & \makecell{$ u(t = 0, x, y) = 0 $ \\ $\begin{cases} u(t, x = 0, y) = ty \\ u(t, x = 1, y) = t^{2}y \end{cases}$ \\ $\begin{cases} u(t, x, y = 0) = tx \\ u(t, x, y = 1) = t^{2}x \end{cases}$} \\
+
+			\hline
+		\end{tabular}
+	\end{center}
+
+	Для заданного уравнения:
+	\begin{enumerate}
+		\setcounter{enumi}{17}
+		\item записать схему предиктор-корректор;
+		\item записать рекуррентное прогоночное соотношение для предиктора;
+		\item записать рекуррентное прогоночное соотношение для корректора;
+		\item указать порядок аппроксимации разностной схемы;
+	\end{enumerate}
+
+
+	\newpage
+
+	\section*{Выполнение задачи}
+	\addcontentsline{toc}{section}{Выполнение задачи}
+
+	\subsection*{Задание 1}
+	\addcontentsline{toc}{subsection}{Задание 1}
+	\large
+	Записать неявную разностную схему:
+	\begin{equation}\label{eq:implicit1}
+		\makecell{
+			\frac{u_{i, j}^{n+1} - u_{i, j}^{n}}{\Delta t} = 0,2\frac{u_{i+1, j}^{n+1} - 2u_{i, j}^{n+1} + u_{i-1, j}^{n+1}}{h_{x}^{2}} + 0,5\frac{u_{i, j+1}^{n+1} - 2u_{i, j}^{n+1} + u_{i, j-1}^{n+1}}{h_{y}^{2}} + \\
+			+ 5(n+1)\Delta t u_{i, j}^{n+1}.
+		}
+	\end{equation}
+
+	\subsection*{Задание 2}
+	\addcontentsline{toc}{subsection}{Задание 2}
+	\large
+	Записать схему переменных направлений для схемы \eqref{eq:implicit1}:
+	\begin{equation}\label{eq:variableDirectionsScheme1}
+		\makecell{
+			\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j}^{n}}{\Delta t} = \frac{0,2}{2}\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + \frac{0,5}{2}\frac{u_{i, j+1}^{n} - 2u_{i, j}^{n} + u_{i, j-1}^{n}}{h_{y}^{2}}, \\ 
+			\frac{u_{i, j}^{n+1} - u_{i, j}^{n+\frac{1}{2}}}{\Delta t} = \frac{0,2}{2}\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + \frac{0,5}{2}\frac{u_{i, j+1}^{n+1} - 2u_{i, j}^{n+1} + u_{i, j-1}^{n+1}}{h_{y}^{2}} - \\
+			- 5(n+\frac{1}{2})\Delta t u^{n+\frac{1}{2}}.
+		}
+	\end{equation}
+	\par
+	\large
+	Первая подсхема в схеме переменных направлений \eqref{eq:variableDirectionsScheme1} аппроксимирует производную по времени на первом полушаге интервала $\Delta t$ и является неявной по координате \textit{x} и явной по координате \textit{y}. Вторая подсхема аппроксимирует производную по времени на втором полушаге интервала $\Delta t$ и является неявной по координате \textit{y} и явной по координате \textit{x}.
+
+	\subsection*{Задание 3}
+	\addcontentsline{toc}{subsection}{Задание 3}
+	\large
+	Привести схемы \eqref{eq:variableDirectionsScheme1} к виду, удобному для использования метода прогонки:
+	\subsubsection*{Первая подсхема}
+	\large
+	Приведу первую подсхему \eqref{eq:variableDirectionsScheme1} к виду, удобному для использования метода прогонки:
+	\small
+	\begin{equation*}
+		\frac{0,2}{2}\frac{\Delta t}{h_{x}^{2}}u_{i+1, j}^{n+\frac{1}{2}} + (1 + 0,2\frac{\Delta t}{h_{x}^{2}})u_{i, j}^{n+\frac{1}{2}} - \frac{0,2}{2}\frac{\Delta t}{h_{x}^{2}}u_{i-1, j}^{n+\frac{1}{2}} = u_{i, j}^{n} + \frac{0,5}{2}\Delta t\frac{u_{i, j+1}^{n} - 2u_{i, j}^{n} + u_{i, j-1}^{n}}{h_{y}^{2}}.
+	\end{equation*}
+	\subsubsection*{Вторая подсхема}
+	\large
+	Приведу вторую подсхему \eqref{eq:variableDirectionsScheme1} к виду, удобному для использования метода прогонки:
+	\small
+	\begin{equation*}
+		\makecell{
+			-\frac{0,5}{2}\frac{\Delta t}{h_{y}^{2}}u_{i, j+1}^{n+1} + (1 + 0,5\frac{\Delta t}{h_{y}^{2}})u_{i, j}^{n+1} - \frac{0,5}{2}\frac{\Delta t}{h_{y}^{2}}u_{i, j-1}^{n+1} = u_{i, j}^{n+\frac{1}{2}} + \frac{0,2}{2}\Delta t\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + \\
+			+ \Delta t(-5(n+\frac{1}{2})\Delta t u^{n+\frac{1}{2}}).
+		}
+	\end{equation*}
+	
+	\subsection*{Задание 4}
+	\addcontentsline{toc}{subsection}{Задание 4}
+	\large
+	Проверить сходимость прогонки для схем \eqref{eq:variableDirectionsScheme1}:
+	\subsubsection*{Первая подсхема}
+	\large
+	Коэффициенты, соответствующие уравнению первой подсхемы \eqref{eq:variableDirectionsScheme1}, имеют вид:
+	\small
+	\begin{center}
+		$a_{i}=-\frac{0,5}{2}\frac{\Delta t}{h_{y}^{2}}$, $\>$ $b_{i}=1 + 0,2\frac{\Delta t}{h_{x}^{2}}$, $\>$ $c_{i}=-\frac{0,2}{2}\frac{\Delta t}{h_{x}^{2}}$, $\>$ $\xi_{i, j}^{n}=u_{i, j}^{n} + \frac{0,5}{2}\Delta t\frac{u_{i, j+1}^{n} - 2u_{i, j}^{n} + u_{i, j-1}^{n}}{h_{y}^{2}}$.
+	\end{center}
+	\par
+	\large
+	Легко видеть, что для первой подсхемы \eqref{eq:variableDirectionsScheme1} схемы расщепления достаточное условие сходимости прогонки выполняется:
+	\begin{equation*}
+		\lvert a_{i} \rvert + \lvert c_{i} \rvert = 0,2\frac{\Delta t}{h_{x}^{2}} < 1 + 0,2\frac{\Delta t}{h_{x}^{2}} = \lvert b_{i} \rvert.
+	\end{equation*}
+	\subsubsection*{Вторая подсхема}
+	\large
+	Коэффициенты, соответствующие уравнению второй подсхемы \eqref{eq:variableDirectionsScheme1}, имеют вид:
+	\small
+	\begin{center}
+		$\tilde{a}_{j}=-\frac{0,5}{2}\frac{\Delta t}{h_{y}^{2}}$, $\>$ $\tilde{b}_{j}=1 + 0,5\frac{\Delta t}{h_{y}^{2}}$, $\>$ $\tilde{c}_{j}=-\frac{0,5}{2}\frac{\Delta t}{h_{y}^{2}}$, $\>$ $\tilde{\xi}_{i, j}^{n+\frac{1}{2}}=u_{i, j}^{n+\frac{1}{2}} + \frac{0,2}{2}\Delta t\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + \Delta t(-5(n+\frac{1}{2})\Delta t u^{n+\frac{1}{2}})$.
+	\end{center}
+	\par
+	\large
+	Легко видеть, что для второй подсхемы \eqref{eq:variableDirectionsScheme1} схемы расщепления достаточное условие сходимости прогонки выполняется:
+	\begin{equation*}
+		\lvert \tilde{a}_{j} \rvert + \lvert \tilde{c}_{j} \rvert = 0,5\frac{\Delta t}{h_{y}^{2}} < 1 + 0,5\frac{\Delta t}{h_{y}^{2}} = \lvert \tilde{b}_{j} \rvert.
+	\end{equation*}
+	
+	\subsection*{Задание 5}
+	\addcontentsline{toc}{subsection}{Задание 5}
+	\large
+	Записать рекуррентное прогоночное соотношение для схем \eqref{eq:variableDirectionsScheme1}:
+	\subsubsection*{Первая подсхема}
+	\large
+	Рекуррентное прогоночное соотношение для первой подсхемы \eqref{eq:variableDirectionsScheme1} имеет вид:
+	\begin{equation*}
+		u_{i, j}^{n+\frac{1}{2}} = \alpha_{i}u_{i+1, j}^{n+\frac{1}{2}} + \beta_{i}.
+	\end{equation*}
+	\par
+	Прогоночные коэффициенты:
+	\begin{equation*}
+		\alpha_{i} = -\frac{a_{i}}{b_{i} + c_{i}\alpha_{i-1}}, \> \beta_{i} = \frac{\xi_{i, j}^{n} - c_{i}\beta_{i-1}}{b_{i} + c_{i}\alpha_{i-1}}.
+	\end{equation*}
+	\subsubsection*{Вторая подсхема}
+	\large
+	Рекуррентное прогоночное соотношение для второй подсхемы \eqref{eq:variableDirectionsScheme1} имеет вид:
+	\begin{equation*}
+		u_{i, j}^{n+1} = \tilde{\alpha}_{j}u_{i, j+1}^{n+1} + \tilde{\beta}_{i}.
+	\end{equation*}
+	\par
+	Прогоночные коэффициенты:
+	\begin{equation*}
+		\tilde{\alpha}_{j} = -\frac{\tilde{a}_{j}}{\tilde{b}_{j} + \tilde{c}_{j}\tilde{\alpha}_{j-1}}, \> \tilde{\beta}_{j} = \frac{\tilde{\xi}_{i, j}^{n+\frac{1}{2}} - \tilde{c}_{j}\tilde{\beta}_{j-1}}{\tilde{b}_{j} + \tilde{c}_{j}\tilde{\alpha}_{j-1}}.
+	\end{equation*}
+
+	\subsection*{Задание 6}
+	\addcontentsline{toc}{subsection}{Задание 6}
+	\large
+	Составить алгоритм (блок-схему) расчёта для схем \eqref{eq:variableDirectionsScheme1}:
+	\small
+	\tikzstyle{start} = [circle, draw=black!60, fill=white!5, very thick, minimum size=10mm]
+	\tikzstyle{stop} = [circle, color=black!60, fill=black!60, very thick, minimum size=10mm]
+	\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{arrow} = [thick,->,>=stealth]
+	\begin{center}
+		\begin{tikzpicture}[node distance=2cm]
+			\node (start) [start] {};
+			\node (in1) [process, below of=start] {
+				\makecell{
+					Задание начальных условий: \\ цикл по $i=1..N_{x}$; цикл по $j=1..N_{x}$ \\
+					$u_{i, j}^{0} = 0$
+				}
+			};
+			\node (in2) [process, below of=in1] {
+				$n = 0$
+			};
+			\node (dec) [decision, below of=in2, yshift=-0.5cm] {
+				$n = N_{t}$
+			};
+			\node (stop) [stop, right of=dec, xshift=2cm] {};
+			\node (pr1) [process, below of=dec, yshift=-1cm] {
+				\makecell{
+					цикл по $j=2..N_{y}-1$ \\
+					1) $\alpha_{1} = 1$, $\beta_{1} = (n+\frac{1}{2})\Delta t(j-1)h_{y}h_{x}$; \\
+					2) цикл по $i=2..N_{x}-1$: расчёт $a_{i}$, $b_{i}$, $c_{i}$, $\xi_{i, j}^{n}$; $\alpha_{i}$, $\beta_{i}$; \\
+					3) $u_{N_{x}, j}^{n+\frac{1}{2}} = \frac{5(n+\frac{1}{2})\Delta t(j-1)h_{y}h_{y} + \beta_{N_{x}-1}}{1 - \alpha_{N_{x}-1}}$; \\
+					4) цикл по $i=N_{x}-1..1$: $u_{i, j}^{n+\frac{1}{2}} = \alpha_{i}u_{i+1, j}^{n+\frac{1}{2}} + \beta_{i}$.
+				}
+			};
+			\node (pr2) [process, below of=pr1, yshift=-2cm] {
+				\makecell{
+					цикл по $i=2..N_{x}-1$ \\
+					1) $\tilde{\alpha}_{1} = 0$, $\tilde{\beta}_{1} = (n+1)\Delta t(i-1)h_{x}$; \\
+					2) цикл по $j=2..N_{y}-1$: расчёт $\tilde{a}_{j}$, $\tilde{b}_{j}$, $\tilde{c}_{j}$, $\tilde{\xi}_{i, j}^{n+\frac{1}{2}}$; $\tilde{\alpha}_{j}$, $\tilde{\beta}_{j}$; \\
+					3) $u_{i, N_{y}}^{n+1} = 2(n+1)\Delta t(i-1)h_{x}$; \\
+					4) цикл по $j=N_{y}-1..1$: $u_{i, j}^{n+1} = \tilde{\alpha}_{j}u_{i, j+1}^{n+1} + \tilde{\beta}_{j}$.
+				}
+			};
+			\node (pr3) [process, below of=pr2, yshift=-1cm] {
+				\makecell{
+					цикл по $j=1..N_{y}$ \\
+					$u_{1, j}^{n+1} = u_{2, j}^{n+1} - (n+1)\Delta t(j-1)h_{y}h_{x}$ \\
+					$u_{N_{x}, j}^{n+1} = u_{N_{x}-1, j}^{n+1} + 5(n+1)\Delta t(j-1)h_{y}h_{x}$
+				}
+			};
+			\node (pr4) [process, below of=pr3, yshift=-1cm] {
+				\makecell{
+					цикл по $i=1..N_{x}$ \\
+					$u_{i, 1}^{n+\frac{1}{2}} = (n+\frac{1}{2})\Delta t(i-1)h_{x}$ \\
+					$u_{i, N_{y}}^{n+\frac{1}{2}} = 2(n+\frac{1}{2})\Delta t(i-1)h_{x}$
+				}
+			};
+			\node (pr5) [process, below of=pr4, yshift=-1cm] {$n = n + 1$};
+			\draw [arrow] (start) -- (in1);
+			\draw [arrow] (in1) -- (in2);
+			\draw [arrow] (in2) -- (dec);
+			\draw [arrow] (dec) -- node[anchor=south] {да} (stop);
+			\draw [arrow] (dec) -- node[anchor=west] {нет} (pr1);
+			\draw [arrow] (pr1) -- (pr2);
+			\draw [arrow] (pr2) -- (pr3);
+			\draw [arrow] (pr3) -- (pr4);
+			\draw [arrow] (pr4) -- (pr5);
+			\draw [arrow] (pr5.west) -- ++(left:8.2cm) -| +(up:16cm) -- (dec.west);
+		\end{tikzpicture}
+	\end{center}
+
+	\subsection*{Задание 7}
+	\addcontentsline{toc}{subsection}{Задание 7}
+	\large
+	Записать неявную разностную схему:
+	\begin{equation}\label{eq:implicit2}
+		\frac{u_{i, j}^{n+1} - u_{i, j}^{n}}{\Delta t} - 2\frac{u_{i+1, j}^{n+1} - u_{i, j}^{n+1}}{h_{x}} + 0,05\frac{u_{i, j}^{n+1} - u_{i, j-1}^{n+1}}{h_{y}} = 0.
+	\end{equation}
+
+	\subsection*{Задание 8}
+	\addcontentsline{toc}{subsection}{Задание 8}
+	\large
+	Записать схему расщепления для схемы \eqref{eq:implicit2}:
+	Рассмотрю метод разрешения неявной разностной схемы \eqref{eq:implicit2}, называемый \textbf{методом дробных шагов}. Данный метод позволяет представить разностной схему \eqref{eq:implicit2} в виде двух подсхем, каждая из которых может быть решена с помощью метода прогонки. \par
+	Разобью пополам интервал $\Delta t$ между точками $t^{n}$ и $t^{n+1}$ на разностной сетке и обозначу полученную промежуточную точку как $t^{n+\frac{1}{2}}$. \par
+	Запишу на первом полушаге интервала $\Delta t$ неявную разностную схему, которая будет учитывать только производную по координате \textit{x}:
+	\begin{equation}\label{eq:firstSplittingSubscheme2}
+		\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j}^{n}}{\Delta t} - 2\frac{u_{i+1, j}^{n+\frac{1}{2}} - u_{i, j}^{n+\frac{1}{2}}}{h_{x}} = 0.
+	\end{equation}
+	\par
+	Запишу на втором полушаге интервала $\Delta t$ неявную разностную схему, которая будет учитывать только производную порядка по координате \textit{y}:
+	\begin{equation}\label{eq:secondSplittingSubscheme2}
+		\frac{u_{i, j}^{n+1} - u_{i, j}^{n+\frac{1}{2}}}{\Delta t} + 0,05\frac{u_{i, j}^{n+1} - u_{i, j-1}^{n+1}}{h_{y}} = 0.
+	\end{equation}
+	\par
+	Складывая подсхемы \eqref{eq:firstSplittingSubscheme2} и \eqref{eq:secondSplittingSubscheme2}, получаю соотношение, отличающееся от неявной разностной схемы \eqref{eq:implicit2} только тем, что вторая производная по координате \textit{x} аппроксимирована в нём не на \textit{(n+1)}-м шаге по времени, а на шаге ($n+\frac{1}{2}$):
+	\begin{equation}\label{eq:splittingScheme2}
+		\frac{u_{i, j}^{n+1} - u_{i, j}^{n}}{\Delta t} - 2\frac{u_{i+1, j}^{n+\frac{1}{2}} - u_{i, j}^{n+\frac{1}{2}}}{h_{x}} + 0,05\frac{u_{i, j}^{n+1} - u_{i, j-1}^{n+1}}{h_{y}} = 0.
+	\end{equation}
+	\par
+	\large
+	Таким образом, дифференциальное уравнение из условия задачи может быть аппроксимировано с помощью последовательного разрешения двух подсхем \eqref{eq:firstSplittingSubscheme2}, \eqref{eq:secondSplittingSubscheme2}, называемых в совокупности \textbf{схемой расщепления}.
+
+	\subsection*{Задание 9}
+	\addcontentsline{toc}{subsection}{Задание 9}
+	\large
+	Вывести рекуррентное соотношение для подсхем \eqref{eq:firstSplittingSubscheme2} и \eqref{eq:secondSplittingSubscheme2}: \par
+	\subsubsection*{Первая подсхема}
+	\large
+	Выражаю $u_{i, j}^{n+\frac{1}{2}}$ и разностной схемы \eqref{eq:firstSplittingSubscheme2}:
+	\begin{equation*}
+		u_{i, j}^{n+\frac{1}{2}} = \frac{2\frac{\Delta t}{h_{x}}}{1 + 2\frac{\Delta t}{h_{x}}}u_{i+1, j}^{n+\frac{1}{2}} + \frac{u_{i, j}^{n}}{1 + 2\frac{\Delta t}{h_{x}}}.
+	\end{equation*}
+	\subsubsection*{Вторая подсхема}
+	\large
+	Выражаю $u_{i, j}^{n+1}$ и разностной схемы \eqref{eq:secondSplittingSubscheme2}:
+	\begin{equation*}
+		u_{i, j}^{n+1} = \frac{0,05\frac{\Delta t}{h_{y}}}{1 + 0,05\frac{\Delta t}{h_{y}}}u_{i, j-1}^{n+1} + \frac{u_{i, j}^{n+\frac{1}{2}}}{1 + 0,05\frac{\Delta t}{h_{y}}}.
+	\end{equation*}
+
+	\subsection*{Задание 10}
+	\addcontentsline{toc}{subsection}{Задание 10}
+	\large
+	Составить алгоритм (блок-схему) расчёта схемы \eqref{eq:splittingScheme2}:
+	\small
+	\tikzstyle{start} = [circle, draw=black!60, fill=white!5, very thick, minimum size=10mm]
+	\tikzstyle{stop} = [circle, color=black!60, fill=black!60, very thick, minimum size=10mm]
+	\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{arrow} = [thick,->,>=stealth]
+	\begin{center}
+		\begin{tikzpicture}[node distance=2cm]
+			\node (start) [start] {};
+			\node (in1) [process, below of=start] {
+				\makecell{
+					Задание начальных условий: \\
+					цикл по $i=1..N_{x}$; цикл по $j=1..N_{y}$ \\ 
+					$u_{i, j}^{0} = e^{(i-1)h_{x}}$
+				}
+			};
+			\node (in2) [process, below of=in1] {
+				$n = 0$
+			};
+			\node (dec) [decision, below of=in2, yshift=-0.25cm] {
+				$n = N_{t}$
+			};
+			\node (stop) [stop, right of=dec, xshift=1cm] {};
+			\node (pr1) [process, below of=dec, yshift=-1cm] {
+				\makecell{
+					цикл по $j=2..N_{y}$: \\
+					$u_{N_{x}, j}^{n+\frac{1}{2}} = (n+\frac{1}{2})\Delta t$ \\
+					цикл по $i=N_{x}-1..1$: \\
+					$u_{i, j}^{n+\frac{1}{2}} = \frac{2\frac{\Delta t}{h_{x}}}{1 + 2\frac{\Delta t}{h_{x}}}u_{i+1, j}^{n+\frac{1}{2}} + \frac{u_{i, j}^{n}}{1 + 2\frac{\Delta t}{h_{x}}}$
+				}
+			};
+			\node (pr2) [process, below of=pr1, yshift=-1cm] {
+				\makecell{
+					цикл по $i=1..N_{x}$: \\
+					$u_{i, 1}^{n+\frac{1}{2}} = (n+\frac{1}{2})\Delta t$
+				}
+			};
+			\node (pr3) [process, below of=pr2, yshift=-1cm] {
+				\makecell{	
+					цикл по $i=1..N_{x}-1$: \\
+					$u_{i, 1}^{n+1} = 0$ \\
+					цикл по $j=2..N_{y}$: \\
+					$u_{i, j}^{n+1} = \frac{0,05\frac{\Delta t}{h_{y}}}{1 + 0,05\frac{\Delta t}{h_{y}}}u_{i, j-1}^{n+1} + \frac{u_{i, j}^{n+\frac{1}{2}}}{1 + 0,05\frac{\Delta t}{h_{y}}}$
+				}
+			};
+			\node (pr4) [process, below of=pr3, yshift=-1cm] {
+				\makecell{
+					цикл по $j=1..N_{y}$: \\
+					$u_{1, j}^{n+1} = 0$				
+				}
+			};
+			\node (pr5) [process, below of=pr4, yshift=-1cm] {
+				$n = n + 1$
+			};
+			\draw [arrow] (start) -- (in1);
+			\draw [arrow] (in1) -- (in2);
+			\draw [arrow] (in2) -- (dec);
+			\draw [arrow] (dec) -- node[anchor=south] {да} (stop);
+			\draw [arrow] (dec) -- node[anchor=west] {нет} (pr1);
+			\draw [arrow] (pr1) -- (pr2);
+			\draw [arrow] (pr2) -- (pr3);
+			\draw [arrow] (pr3) -- (pr4);
+			\draw [arrow] (pr4) -- (pr5);
+			\draw [arrow] (pr5.west) -- ++(left:8.2cm) -| +(up:15cm) -- (dec.west);
+		\end{tikzpicture}
+	\end{center}
+	
+	\subsection*{Задание 11}
+	\addcontentsline{toc}{subsection}{Задание 11}
+	\large
+	Представить задачу в нестационарном виде: \par
+	Представлю стационарную задачу в нестационарном виду. Для этого в уравнение необходимо добавить фиктивную производную по времени:
+	\begin{equation}\label{eq:nonstationary3}
+		-\frac{du}{dx}=0,3\frac{d^{2}u}{dx^{2}}-3x^{2} \rightarrow \frac{\partial \tilde{u}}{\partial \tau}-\frac{\partial \tilde{u}}{\partial x}=0,3\frac{\partial^{2} \tilde{u}}{\partial x^{2}}-3x^{2}.
+	\end{equation}
+	\par
+	При этом искомая функция станет уже функцией двух переменных:
+	\begin{equation*}
+		u(x) \rightarrow \tilde{u}(x,\tau).
+	\end{equation*}
+
+	\subsection*{Задание 12}
+	\addcontentsline{toc}{subsection}{Задание 12}
+	\large
+	Записать разностную схему Кранка-Николсона для уравнения \eqref{eq:nonstationary3}:
+	\small
+	\begin{equation}\label{eq:crankNicholson3}
+		\frac{u_{j}^{n+1} - u_{j}^{n}}{\Delta t} - \frac{1}{2}\frac{u_{j+1}^{n+1} - u_{j}^{n+1}}{h} - \frac{1}{2}\frac{u_{j+1}^{n} - u_{j}^{n}}{h} = \frac{0,3}{2}\frac{u_{j+1}^{n+1} - 2u_{j}^{n+1} + u_{j-1}^{n+1}}{h^{2}} + \frac{0,3}{2}\frac{u_{j+1}^{n} - 2u_{j}^{n} + u_{j-1}^{n}}{h^{2}} - 3((j-1)h)^{2}.
+	\end{equation}
+
+	\subsection*{Задание 13}
+	\addcontentsline{toc}{subsection}{Задание 13}
+	\large
+	Привести схему \eqref{eq:crankNicholson3} к виду, удобному для использования метода прогонки:
+	\scriptsize
+	\begin{equation*}
+		-(\frac{1}{2}\frac{\Delta t}{h} + \frac{0,3}{2}\frac{\Delta t}{h^{2}})u_{j+1}^{n+1} + (1 + \frac{1}{2}\frac{\Delta t}{h} + 0,3\frac{\Delta t}{h^{2}})u_{j}^{n+1} - \frac{0,3}{2}\frac{\Delta t}{h^{2}}u_{j-1}^{n+1} = u_{j}^{n} + \frac{0,3}{2}\frac{\Delta t}{h^{2}}(u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}) + \frac{1}{2}\frac{\Delta t}{h}(u_{j+1}^{n}-u_{j}^{n}) - \Delta t 3((j-1)h_{x})^{2}.
+	\end{equation*}
+	\large
+	\par
+	Введу следующие обозначения:
+	\begin{equation*}
+		\makecell{
+			a_{j}=-(\frac{1}{2}\frac{\Delta t}{h} + \frac{0,3}{2}\frac{\Delta t}{h^{2}}), \> b_{j}=1 + \frac{1}{2}\frac{\Delta t}{h} + 0,3\frac{\Delta t}{h^{2}}, \> c_{j}=-\frac{0,3}{2}\frac{\Delta t}{h^{2}}, \\
+			\xi_{j}^{n}=u_{j}^{n} + \frac{0,3}{2}\frac{\Delta t}{h^{2}}(u_{j+1}^{n}-2u_{j}^{n}+u_{j-1}^{n}) + \frac{1}{2}\frac{\Delta t}{h}(u_{j+1}^{n}-u_{j}^{n}) - \Delta t 3((j-1)h_{x})^{2}.
+		}
+	\end{equation*}
+	\par
+	С учётом обозначений равенство будет иметь вид:
+	\begin{equation*}
+		\alpha_{j}u_{j+1}^{n+1} + b_{j}u_{j}^{n+1} + c_{j}u_{j-1}^{n+1} = \xi_{j}^{n}.
+	\end{equation*}
+	\par
+	Данное преобразование называется \textit{преобразованием} \textit{схемы Кранка-Николсона} \textit{к виду}, \textit{удобному для} \textit{использования метода прогонки}.
+
+	\subsection*{Задание 14}
+	\addcontentsline{toc}{subsection}{Задание 14}
+	\large
+	Проверить сходимость прогонки: \par
+	Легко видеть, что для разностной схемы \eqref{eq:crankNicholson3} достаточное условие сходимости прогонки выполняется:
+	\begin{equation*}
+		\lvert a_{j} \rvert + \lvert c_{j} \rvert = \frac{1}{2}\frac{\Delta t}{h} + 0,3\frac{\Delta t}{h^{2}} < 1 + \frac{1}{2}\frac{\Delta t}{h} + 0,3\frac{\Delta t}{h^{2}} = \lvert b_{j} \rvert.
+	\end{equation*}
+
+	\subsection*{Задание 15}
+	\addcontentsline{toc}{subsection}{Задание 15}
+	\large
+	Найти $\alpha_1$, $\beta_1$: \par
+	Для реализации разностной схемы Кранка-Николсона требуется ввести некоторое дополнительное условие, связывающее значения функции \textit{u(t, x)} на \textit{(n+1)}-м шаге по времени. Представлю это дополнительное условие в виде линейной зависимости
+	\begin{equation}\label{eq:recurrentCrankNicholson3}
+		u_{j}^{n+1} = \alpha_{j} u_{j+1}^{n+1} + \beta{j},
+	\end{equation}
+	справедливой для любого из значений $j=1..N-1$. \par
+	Соотношение \eqref{eq:recurrentCrankNicholson3} называют \textbf{рекуррентным прогоночным соотношением}, а коэффициенты $\alpha_{j}$, $\beta_{j}$ - \textbf{прогоночными коэффициентами}. \\
+	\par
+	Для определения прогоночных коэффициентов на \textit{1}-м шаге по координате \textit{x}, использую рекуррентное прогоночное соотношение \eqref{eq:recurrentCrankNicholson3}, записанное для $j=1$:
+	\begin{equation*}
+		u_{1}^{n+1} = \alpha_{1} u_{2}^{n+1} + \beta_{1}
+	\end{equation*}
+	и левое граничное условие:
+	\begin{equation*}
+		u_{1}^{n+1} = u_{2}^{n+1}.
+	\end{equation*}
+	\par
+	Сравнивая эти два соотношения, получаю:
+	\begin{equation*}
+		\alpha_{1} = 1, \> \beta_{1} = 0.
+	\end{equation*}
+	
+	\subsection*{Задание 16}
+	\addcontentsline{toc}{subsection}{Задание 16}
+	\large
+	Записать рекуррентное прогоночное соотношение: \par
+	Соотношение \eqref{eq:recurrentCrankNicholson3} является \textbf{рекуррентным прогоночным соотношением}.
+		
+	\subsection*{Задание 17}
+	\addcontentsline{toc}{subsection}{Задание 17}
+	\large
+	Составить алгоритм (блок-схему) расчёта:
+	\tikzstyle{start} = [circle, draw=black!60, fill=white!5, very thick, minimum size=13mm]
+	\tikzstyle{stop} = [circle, draw=black!60, fill=white!60, very thick, minimum size=13mm]
+	\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+	\tikzstyle{arrow} = [thick,->,>=stealth]
+	\begin{center}
+		\begin{tikzpicture}[node distance=2cm]
+			\node (start) [start] {Start};
+			\node (in1) [process, below of=start, yshift=-1cm] {
+				\makecell{
+					Задание начальных условий: \\
+					цикл по $j=1..N$:\\ 
+					$u_{j}^{0} = -3((i-1)h)^{2}$
+				}
+			};
+			\node (in2) [process, below of=in1] {
+				$n = 0$
+			};
+			\node (pr1) [process, below of=in2, yshift=-0.5cm] {
+				\makecell{
+					Определение $\alpha_{1}$, $\beta_{1}$ из левого граничного условия \\
+					$\alpha_{1} = 1$ \\
+					$\beta_{1} = 0$
+				}
+			};
+			\node (pr2) [process, below of=pr1, yshift=-1cm] {
+				\makecell{
+					цикл по $j=2..N-1$: \\
+					расчёт $a_{j}$, $b_{j}$, $c_{j}$, $\xi_{j}^{n}$; $\alpha_{j}=-\frac{\alpha{j}}{b_{j}+c_{j}\alpha_{j-1}}$, $\beta_{j}=\frac{\xi_{j}^{n}-c_{j}\beta{j-1}}{b_{j}+c_{j}\alpha_{j-1}}$
+				}
+			};
+			\node (pr3) [process, below of=pr2, yshift=-0.5cm] {
+				\makecell{
+					Определение $u_{N}^{n+1}$ из правого граничного условия \\
+					$u_{N}^{n+1} = \frac{h + \beta_{N-1}}{1 - \alpha_{N-1}}$
+				}
+			};
+			\node (pr4) [process, below of=pr3, yshift=-0.5cm] {
+				\makecell{
+					цикл по $j=N-1..1$: \\
+					$u_{j}^{n+1} = \alpha_{j}u_{j+1}^{n+1} + \beta_{j}$
+				}
+			};
+			\node (dec) [decision, below of=pr4, yshift=-2cm] {
+				$\lvert \lvert u^{n+1} - u^{n} \rvert \rvert \le \epsilon$
+			};
+			\node (stop) [stop, right of=dec, xshift=2cm] {End};
+			\node (pr5) [process, below of=dec, yshift=-2cm] {
+				$n = n + 1$
+			};
+			\draw [arrow] (start) -- (in1);
+			\draw [arrow] (in1) -- (in2);
+			\draw [arrow] (in2) -- (pr1);
+			\draw [arrow] (pr1) -- (pr2);
+			\draw [arrow] (pr2) -- (pr3);
+			\draw [arrow] (pr3) -- (pr4);
+			\draw [arrow] (pr4) -- (dec);
+			\draw [arrow] (dec) -- node[anchor=west] {нет} (pr5);
+			\draw [arrow] (dec) -- node[anchor=south] {да} (stop);
+			\draw [arrow] (pr5.west) -- ++(left:8.2cm) -| +(up:16cm) -- (pr1.west);
+		\end{tikzpicture}
+	\end{center}
+
+	\subsection*{Задание 18}
+	\addcontentsline{toc}{subsection}{Задание 18}
+	\large
+	Записать схему предиктор-корректор: \par
+	Данная схема требует особого способа расщепления интервала $\Delta t$: интервал $\Delta t$ между точками $t^{n}$ и $t^{n+1}$ на разностной сетке делится пополам; интервал $\Delta t/2$ между точками $t^{n}$ и $t^{n+\frac{1}{2}}$ снова делится пополам. \par
+	На первом полушаге интервала $\Delta t/2$ записывается неявная разностная схема, в которой учитывается только производная второго порядка по координате \textit{x}:
+	\begin{equation}\label{eq:firstPredictor4}
+		\frac{u_{i, j}^{n+\frac{1}{4}} - u_{i, j}^{n}}{\Delta t/2} = 7(n+\frac{1}{4})\Delta t(j-1)h_{y}\frac{u_{i+1, j}^{n+\frac{1}{4}} - 2u_{i, j}^{n+\frac{1}{4}} + u_{i-1, j}^{n+\frac{1}{4}}}{h_{x}^{2}} - 3(u_{i, j}^{n+\frac{1}{4}} * u_{i, j}^{n}).
+	\end{equation}
+	\par
+	На втором полушаге интервала $\Delta t/2$ записывается неявная разностная схема, в которой учитывается только производная второго порядка по координате \textit{y}:
+	\begin{equation}\label{eq:secondPredictor4}
+		\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j}^{n+\frac{1}{4}}}{\Delta t/2} + 8\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}} = 5(n+\frac{1}{2})\Delta t\frac{u_{i, j+1}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}^{2}}.
+	\end{equation}
+	\par
+	Результатом последовательного решения подсхем \eqref{eq:firstPredictor4}, \eqref{eq:secondPredictor4}, называемых в совокупности \textbf{предиктором}, являются значения функции \textit{u(t, x, y)} на шаге по времени $(n+\frac{1}{2})$. Для завершения расчётов на всём интервале $\Delta t$ используется поправочное разностное соотношение, называемое \textbf{корректором}:
+	\scriptsize
+	\begin{equation}\label{eq:corrector4}
+		\frac{u_{i, j}^{n+1} - u_{i, j}^{n}}{\Delta t} + 8\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}} = 7(n+\frac{1}{2})\Delta t(j-1)h_{y}\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + 5(n+\frac{1}{2})\Delta t\frac{u_{i, j+1}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}^{2}} - 3(u_{i, j}^{n+\frac{1}{2}})^{2}.
+	\end{equation}
+	\large
+	\par
+	Таким образом, схема предиктор-корректор в случае двумерных задач состоит из трёх подсхем.
+
+	\subsection*{Задание 19}
+	\addcontentsline{toc}{subsection}{Задание 19}
+	\large
+	Записать рекуррентное прогоночное соотношение для предиктора:
+	\subsubsection*{Первая подсхема}
+	\large
+	Рекуррентное прогоночное соотношение для первой подсхемы предиктора \eqref{eq:firstPredictor4} имеет вид:
+	\begin{equation*}
+		u_{i, j}^{n+\frac{1}{4}} = \alpha_{i}u_{i+1, j}^{n+\frac{1}{4}} + \beta_{i}.
+	\end{equation*}
+	\par
+	Прогоночные коэффициенты:
+	\begin{equation*}
+		\alpha_{i} = -\frac{a_{i}}{b_{i} + c_{i}\alpha_{i-1}}, \> \beta_{i} = \frac{\xi_{i, j}^{n} - c_{i}\beta_{i-1}}{b_{i} + c_{i}\alpha_{i-1}}.
+	\end{equation*}
+	\subsubsection*{Вторая подсхема}
+	\large
+	Рекуррентное прогоночное соотношение для второй подсхемы предиктора \eqref{eq:secondPredictor4} имеет вид:
+	\begin{equation*}
+		u_{i, j}^{n+\frac{1}{2}} = \tilde{\alpha}_{j}u_{i, j+1}^{n+\frac{1}{2}} + \tilde{\beta}_{i}.
+	\end{equation*}
+	\par
+	Прогоночные коэффициенты:
+	\begin{equation*}
+		\tilde{\alpha}_{j} = -\frac{\tilde{a}_{j}}{\tilde{b}_{j} + \tilde{c}_{j}\tilde{\alpha}_{j-1}}, \> \tilde{\beta}_{j} = \frac{\tilde{\xi}_{i, j}^{n+\frac{1}{4}} - \tilde{c}_{j}\tilde{\beta}_{j-1}}{\tilde{b}_{j} + \tilde{c}_{j}\tilde{\alpha}_{j-1}}.
+	\end{equation*}
+
+	\subsection*{Задание 20}
+	\addcontentsline{toc}{subsection}{Задание 20}
+	\large
+	Записать рекуррентное прогоночное соотношение для корректора \eqref{eq:corrector4}:
+	\scriptsize
+	\begin{equation*}
+		u_{i, j}^{n+1} = u_{i, j}^{n} - 8\frac{u_{i, j}^{n+\frac{1}{2}} - u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}} + 7(n+\frac{1}{2})\Delta t(j-1)h_{y}\frac{u_{i+1, j}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i-1, j}^{n+\frac{1}{2}}}{h_{x}^{2}} + 5(n+\frac{1}{2})\Delta t\frac{u_{i, j+1}^{n+\frac{1}{2}} - 2u_{i, j}^{n+\frac{1}{2}} + u_{i, j-1}^{n+\frac{1}{2}}}{h_{y}^{2}} - 3(u_{i, j}^{n+\frac{1}{2}})^{2}.
+	\end{equation*}
+
+	\subsection*{Задание 21}
+	\addcontentsline{toc}{subsection}{Задание 21}
+	\large
+	Определить порядок аппроксимации разностной схемы: $O(\Delta t^{2}, h_{x}^{2}, h_{y})$.
+\end{document}
