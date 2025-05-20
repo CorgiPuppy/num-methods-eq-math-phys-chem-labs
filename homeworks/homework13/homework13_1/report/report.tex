@@ -309,7 +309,14 @@
 					4) цикл по $i=N_{x}-1..1$: $u_{i, j}^{n+\frac{1}{2}} = \alpha_{i}u_{i+1, j}^{n+\frac{1}{2}} + \beta_{i}$.
 				}
 			};
-			\node (pr2) [process, below of=pr1, yshift=-2cm] {
+			\node (pr2) [process, below of=pr1, yshift=-1cm] {
+				\makecell{
+					цикл по $i=1..N_{x}$ \\
+					$u_{i, 1}^{n+\frac{1}{2}} = (n+\frac{1}{2})\Delta t(i-1)h_{x}$ \\
+					$u_{i, N_{y}}^{n+\frac{1}{2}} = 2(n+\frac{1}{2})\Delta t(i-1)h_{x}$
+				}
+			};
+			\node (pr3) [process, below of=pr2, yshift=-2cm] {
 				\makecell{
 					цикл по $i=2..N_{x}-1$ \\
 					1) $\tilde{\alpha}_{1} = 0$, $\tilde{\beta}_{1} = (n+1)\Delta t(i-1)h_{x}$; \\
@@ -318,18 +325,11 @@
 					4) цикл по $j=N_{y}-1..1$: $u_{i, j}^{n+1} = \tilde{\alpha}_{j}u_{i, j+1}^{n+1} + \tilde{\beta}_{j}$.
 				}
 			};
-			\node (pr3) [process, below of=pr2, yshift=-1cm] {
+			\node (pr4) [process, below of=pr3, yshift=-1cm] {
 				\makecell{
 					цикл по $j=1..N_{y}$ \\
 					$u_{1, j}^{n+1} = u_{2, j}^{n+1} - (n+1)\Delta t(j-1)h_{y}h_{x}$ \\
 					$u_{N_{x}, j}^{n+1} = u_{N_{x}-1, j}^{n+1} + 5(n+1)\Delta t(j-1)h_{y}h_{x}$
-				}
-			};
-			\node (pr4) [process, below of=pr3, yshift=-1cm] {
-				\makecell{
-					цикл по $i=1..N_{x}$ \\
-					$u_{i, 1}^{n+\frac{1}{2}} = (n+\frac{1}{2})\Delta t(i-1)h_{x}$ \\
-					$u_{i, N_{y}}^{n+\frac{1}{2}} = 2(n+\frac{1}{2})\Delta t(i-1)h_{x}$
 				}
 			};
 			\node (pr5) [process, below of=pr4, yshift=-1cm] {$n = n + 1$};
